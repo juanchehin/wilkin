@@ -2,14 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import personasRoutes from './routes/personasRoutes';
-import tiposdocumentosRoutes from './routes/tiposdocumentosRoutes';
 import loginRoutes from './routes/loginRoutes';
-import planesRoutes from './routes/planesRoutes';
-import medicionesRoutes from './routes/medicionesRoutes';
-import cajaRoutes from './routes/cajaRoutes';
-import asistenciaRoutes from './routes/asistenciaRoutes';
-import uploadRoutes from './routes/uploadRoutes';
-import settingsRoutes from './routes/settingsRoutes';
 
 
 
@@ -68,14 +61,7 @@ class Server {
 
         // this.app.use('/', cors(configuracionCORS),indexRoutes);
         this.app.use('/api/personas', personasRoutes);
-        this.app.use('/api/tiposdocumentos', tiposdocumentosRoutes);
-        this.app.use('/api/login', loginRoutes);
-        this.app.use('/api/planes', planesRoutes);
-        this.app.use('/api/mediciones', medicionesRoutes);
-        this.app.use('/api/caja', cajaRoutes);
-        this.app.use('/api/asistencias', asistenciaRoutes);
-        this.app.use('/api/upload', uploadRoutes);
-        this.app.use('/api/settings', settingsRoutes);
+        this.app.use('/api/login', loginRoutes)
 
     }
 

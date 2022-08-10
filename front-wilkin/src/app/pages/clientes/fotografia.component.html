@@ -1,0 +1,48 @@
+<div class="container">
+    <h1 class="well">Tomar fotografia</h1>
+    <form ngNativeValidate [formGroup]="forma" (ngSubmit)="registrarFoto()">
+        <div *ngIf="!mostrarcamara && !mostrarcaptura" style="text-align:center">
+            <div>
+                <img src="../../../../assets/images/sportsman.png" class="img-thumbnail" alt="Imagen" width="300" height="400">
+            </div>
+            <br>
+            <button (click)="modificarCamara()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                          <i class="fa fa-plus"></i>
+                          Tomar fotografia
+                          </button>
+            <br>
+        </div>
+        <div style="text-align:center">
+            <div *ngIf="mostrarcamara">
+                <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"></webcam>
+                <br/>
+
+                <div>
+                    <button class="actionBtn" title="Take Picture" (click)="triggerSnapshot();" class="btn waves-effect waves-light btn-rounded btn-primary">
+                                      <i class="fa fa-plus"></i>
+                                      Tomar fotografia
+                                      </button>
+                </div>
+                <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">
+                    <button class="btn waves-effect waves-light btn-rounded btn-primary">
+                                      <i class="fa fa-plus"></i>
+                                      Girar
+                                      </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="mostrarcaptura" style="text-align:center">
+            <img [src]="img" height="400" width="500" />
+        </div>
+
+        <h4 *ngIf="errors.length > 0">Messages:</h4>
+        <ul *ngFor="let error of errors">
+            <li>{{error | json}}</li>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase" [disabled]="!habilitarboton">Cargar foto</button>
+        <br>
+    </form>
+</div>
