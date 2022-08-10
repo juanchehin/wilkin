@@ -10,5 +10,11 @@
     "lubricentro"
   ],
   "author": "Ing. Juan Chehin",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "mysql2": "^2.3.3"
+  }
 }
