@@ -4,18 +4,19 @@ import { APP_ROUTES } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './shared/login/login.component';
 
 import { ServiceModule } from './services/service.module';
 import { RouterModule } from '@angular/router';
+import { PagesModule } from './pages/pages.module';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
     APP_ROUTES,
-    PagesModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

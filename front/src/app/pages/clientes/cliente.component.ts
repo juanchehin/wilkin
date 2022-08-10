@@ -1,12 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonaService } from '../../services/service.index';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
+const Swal = require('sweetalert2');
 import { Router } from '@angular/router';
-import { Cliente } from '../../../models/cliente.model';
-import { PlanService } from '../../../services/plan/plan.service';
-import { Plan } from '../../../models/plan.models';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cliente',
@@ -16,7 +13,6 @@ export class ClienteComponent implements OnInit {
 
   forma!: FormGroup;
   respuesta: any;
-  planes!: Plan;
   cargando = true;
   cantPlanes = 0;
   aparecer = false;
@@ -24,9 +20,7 @@ export class ClienteComponent implements OnInit {
 
   constructor(
     public personaService: PersonaService,
-    private router: Router,
-    public planService: PlanService,
-    private _sanitizer: DomSanitizer
+    private router: Router
   ) {
    }
 
@@ -35,61 +29,16 @@ export class ClienteComponent implements OnInit {
 
 
     this.forma = new FormGroup({
-      // IdPersona: new FormControl(),
-      IdRol: new FormControl('0', Validators.required ),
-      IdTipoDocumento: new FormControl(1, Validators.required ),
       Apellidos: new FormControl(null, Validators.required ),
       Nombres: new FormControl(null, Validators.required ),
-      Documento: new FormControl(null, Validators.required ),
-      Password: new FormControl(null, Validators.required ),
-      Password2: new FormControl(null, Validators.required ),
       Telefono: new FormControl(null ),
-      Sexo: new FormControl(null, Validators.required ),
       Observaciones: new FormControl(''),
-      Foto: new FormControl(''),
-      FechaNac: new FormControl(null, Validators.required  ),
       Correo: new FormControl( null , [Validators.required , Validators.email ]),
-      Usuario: new FormControl(''),
-      Calle: new FormControl(null),
-      Piso: new FormControl(null),
-      Departamento: new FormControl(''),
-      Ciudad: new FormControl(''),
-      Pais: new FormControl(''),
-      Numero: new FormControl(null),
-      Objetivo: new FormControl(null),
-      // IdPlan: new FormControl(null),
-      Ocupacion: new FormControl(null),
-      Horario: new FormControl(null),
-      Img: new FormControl(null)
-    }, {
-      // validator: this.sonIguales('Password' , 'Password2')
     })
 
   }
 
 
-// ==================================================
-//        Controla que las contraseñas sean iguales
-// ==================================================
-sonIguales( campo1: string, campo2: string ): any {
-
-
-  return ( group: FormGroup ) => {
-
-    const pass1 = group.controls[campo1].value;
-    const pass2 = group.controls[campo2].value;
-
-    if ( pass1 === pass2 ) {
-      return null;
-    }
-
-    return {
-      sonIguales: true
-    };
-
-  };
-
-}
 // ==================================================
 //        Nuevo cliente
 // ==================================================
@@ -100,35 +49,10 @@ sonIguales( campo1: string, campo2: string ): any {
       return;
     }
 
-    const cliente = new Cliente(
-      this.forma.value.Correo,
-      this.forma.value.Password,
-      this.forma.value.IdTipoDocumento,
-      this.forma.value.Apellidos,
+    this.personaService.crearCliente(this.forma.value.Apellidos,
       this.forma.value.Nombres,
-      this.forma.value.Documento,
-      this.forma.value.Telefono,
-      this.forma.value.Sexo,
-      this.forma.value.FechaNac,
-      this.forma.value.Observaciones,
-      this.forma.value.Usuario,
-      this.forma.value.Calle,
-      this.forma.value.Piso,
-      this.forma.value.Departamento,
-      this.forma.value.Ciudad,
-      this.forma.value.Pais,
-      this.forma.value.Numero,
-      this.forma.value.Objetivo,
-      null,
-      this.forma.value.Ocupacion,
-      this.forma.value.Horario,
-      null,
-      null
-    );
-
-
-
-    this.personaService.crearCliente( cliente  )
+      this.forma.value.Telefono,this.forma.value.Correo,
+      this.forma.value.Observaciones )
               .subscribe( (resp: any) => {
 
                   /*  Transformar resp.mensaje a JSON para que se pueda acceder*/
@@ -141,7 +65,7 @@ sonIguales( campo1: string, campo2: string ): any {
                       showConfirmButton: false,
                       timer: 2000
                     });
-                    this.router.navigate(['/mantenimiento/clientes']);
+                    this.router.navigate(['/clientes']);
                   } else {
                     if (resp.Mensaje === 'La persona ya se encuentra cargada') {
                         Swal.fire({
@@ -153,7 +77,7 @@ sonIguales( campo1: string, campo2: string ): any {
                           cancelButtonColor: '#d33',
                           confirmButtonText: 'Si, activar'
                         })
-                        .then( activar => {
+                        .then( (activar: any) => {
                           this.parametro = resp.pIdPersona;
                           if (activar) {
                             this.activarCliente(this.parametro);
@@ -193,7 +117,7 @@ activarCliente(IdPersona: any) {
                     showConfirmButton: false,
                     timer: 2000
                   });
-                  this.router.navigate(['/mantenimiento/clientes']);
+                  this.router.navigate(['/clientes']);
                 } else {
                   Swal.fire({
                     icon: 'error',
@@ -202,24 +126,6 @@ activarCliente(IdPersona: any) {
                   });
                 }
               });
-}
-// ==================================================
-//        Carga de planes
-// ==================================================
-
-cargarPlanes() {
-
-  this.planService.cargarTodasPlanes( )
-             .subscribe( (resp: any) => {
-
-              this.planes = resp[0];
-
-              this.cantPlanes = resp[1][0].maximo;
-
-              this.cargando = false;
-
-            });
-
 }
 
 }

@@ -14,8 +14,8 @@ const pagesRoutes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-            { path: 'cliente/medicion/editar/:IdMedicion/:IdPersona', component: EditarmedicionComponent },
-            { path: 'cliente/asistencias/historico/:IdPersona', component: HistoricoComponent },
+            // { path: 'cliente/medicion/editar/:IdMedicion/:IdPersona', component: EditarmedicionComponent },
+            // { path: 'cliente/historico/:IdPersona', component: HistoricoComponent },
             { path: '', redirectTo: 'principal', pathMatch: 'full' }
         ]
     },
