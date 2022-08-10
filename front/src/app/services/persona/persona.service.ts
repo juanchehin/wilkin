@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Persona } from '../../models/persona.model';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Cliente } from 'src/app/models/cliente.model';
-import { Profesional } from '../../models/profesional.model';
 import { environment } from '../../../environments/environment';
 
 const URL_SERVICIOS = environment.URL_SERVICIOS;
@@ -390,24 +387,28 @@ eliminarCliente( IdPersona: any ) {
 //        Editar Cliente
 // ==================================================
 
-editarCliente( cliente: Cliente ) {
+editarCliente( Apellidos : string,
+  Nombres : string,
+   Observaciones : string,
+   Telefono : string,
+ Correo : string ) {
 
-  const id = cliente.IdPersona;
+  // const id = cliente.IdPersona;
 
-  let url = URL_SERVICIOS + '/personas/cliente/actualizar/' + id;
+  // let url = URL_SERVICIOS + '/cliente/actualizar/' + id;
 
   // url += '?token=' + this.token;  // query
-  url += '?IdRol=' + this.IdRol;
+  // url += '?IdRol=' + this.IdRol;
 
 
-  return this.http.put(url ,
-     cliente,
-     {
-      headers: {
-        token: this.token
-      }
-    }
-  );
+  // return this.http.put(url ,
+  //    cliente,
+  //    {
+  //     headers: {
+  //       token: this.token
+  //     }
+  //   }
+  // );
 }
 
 // ====================================================================================================================
@@ -504,32 +505,5 @@ eliminarProfesional( IdPersona: any ) {
   );
 }
 
-// ==================================================
-//        Da de baja una persona
-// ==================================================
-
-bajaProfesional( termino: string ) {
-
-  let url = URL_SERVICIOS + '/personas/';
-  url += '&termino=' + termino;
-  url += '&IdRol=' + this.IdRol;
-
-  // return this.http.put(url,
-  //   termino,
-  //   {
-  //     headers: {
-  //       token: this.token
-  //     }
-  //   }
-  //   ).map( (resp: any) => {
-  //           Swal.fire({
-  //             position: 'top-end',
-  //             icon: 'success',
-  //             title: 'Profesional eliminado',
-  //             showConfirmButton: false,
-  //             timer: 2000
-  //           });
-  //         });
-}
 
 }

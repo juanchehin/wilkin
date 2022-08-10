@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { PersonaService, HeaderService } from '../../services/service.index';
+import { PersonaService } from '../../services/service.index';
 // import Swal from 'sweetalert2';
 const Swal = require('sweetalert2')
 
