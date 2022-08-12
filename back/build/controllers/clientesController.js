@@ -180,6 +180,42 @@ class PersonasController {
             });
         });
     }
+    // ==================================================
+    //        Busqueda por nombre - apellido
+    // ==================================================
+    buscarApellidoNombres(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("req.params : ", req.params);
+            var Apellidos = req.params.pApellidos || '';
+            var Nombres = req.params.pNombres || '';
+            if (Apellidos === 'null')
+                Apellidos = '';
+            if (Nombres === 'null')
+                Nombres = '';
+            database_1.default.query(`call bsp_buscar_cliente_apellidos_nombres('${Apellidos}','${Nombres}')`, function (err, result, fields) {
+                if (err) {
+                    res.status(404).json({ text: "La personas no existe" });
+                }
+                console.log("result : ", result);
+                return res.json(result);
+            });
+        });
+    }
+    // ==================================================
+    //        Busqueda por nombre - apellido
+    // ==================================================
+    buscarPatente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const pPatente = req.params.pPatente;
+            database_1.default.query(`call bsp_buscar_cliente_patente('${pPatente}')`, function (err, result, fields) {
+                if (err) {
+                    console.log("error : ", err);
+                    res.status(404).json({ text: "La personas no existe" });
+                }
+                return res.json(result);
+            });
+        });
+    }
 }
 const personasController = new PersonasController;
 exports.default = personasController;

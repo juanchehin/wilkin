@@ -13,22 +13,11 @@ export class ClientesComponent implements OnInit {
 
   clientes: any[] = [];
   desde = 0;
-  totalAsistencias = true;
-  ClasesDisponibles = 0;
-
-  planes!: any;
-  cantPlanes = 0;
-
   totalClientes = 0;
-  cargando = true;
-  planSeleccionado = 0;  // Parametro seleccionado en el SELECT de planes
-  estadoSeleccionado = 'N';  // Parametro seleccionado en el SELECT de los estados de clientes
-
 
   constructor(
     public personaService: PersonaService
   ) {
-    this.planSeleccionado = 0;
    }
 
   ngOnInit() {
@@ -37,40 +26,7 @@ export class ClientesComponent implements OnInit {
   }
 
 // ==================================================
-// Detecta los cambios en el select de los planes y carga IdPlan en 'nuevoValor'
-// ==================================================
-onChange(nuevoValor: any) {
-
-  console.log("nuevo valor : ",nuevoValor);
-}
-
-// ==================================================
-// Detecta los cambios en el select de los planes y carga IdPlan en 'nuevoValor'
-// ==================================================
-cambios(nuevoValor: any) {
-
-    this.planSeleccionado = nuevoValor;
-
-    this.cargarClientes();
-}
-
-// ==================================================
-// Detecta los cambios en el select de los clientes activos/inactivos
-// ==================================================
-cambiosEstado(nuevoEstado: any) {
-
-  this.estadoSeleccionado = nuevoEstado;
-
-
-  this.cargarClientes();
-
-}
-
-// ==================================================
-// Carga de clientes y filtra por dados de baja/alta/todos
-// Ademas filtra por plan
-// 0 : Dados de alta
-// -1 : Todos
+// Carga de clientes
 // ==================================================
 
   cargarClientes() {
@@ -88,7 +44,7 @@ cambiosEstado(nuevoEstado: any) {
 
                 this.clientes = resp[0];
 
-                this.cargando = false;
+                // this.cargando = false;
 
               });
 
@@ -96,36 +52,35 @@ cambiosEstado(nuevoEstado: any) {
 
 
 // ==================================================
-//  Busca un cliente por plan o por todos
-// ==================================================
-
-  buscarCliente( ) {
-
-    const inputElement: HTMLInputElement = document.getElementById('buscarApellidos') as HTMLInputElement;
-    const Apellidos: any = inputElement.value || null;
-
-    const inputElement1: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
-    const Nombres: any = inputElement1.value || null;
-
-    this.personaService.buscarClientePorPlan( Apellidos, Nombres , this.planSeleccionado.toString()  )
-            .subscribe( (resp: any) => {
-
-              if( resp.length !== 0 ) {
-                this.clientes = resp[0];
-                this.totalClientes = resp[1][0].cantCli;
-              } else {
-                this.totalClientes = 0;
-                this.clientes = resp[0];
-              }
-            });
-
-  }
-
-// ==================================================
 //  Busca el cliente por patente
 // ==================================================
 
 buscarPatente( ) {
+
+  const inputElement: HTMLInputElement = document.getElementById('buscarPatente') as HTMLInputElement;
+  const Patente: any = inputElement.value || null;
+
+
+  this.personaService.buscarPatente( Patente  )
+          .subscribe( (resp: any) => {
+
+            if( resp.length !== 0 ) {
+              this.clientes = resp[0];
+              this.totalClientes = resp[1][0].cantCli;
+            } else {
+              this.totalClientes = 0;
+              this.clientes = resp[0];
+            }
+          });
+
+}
+
+
+// ==================================================
+//  Busca un cliente por plan o por todos
+// ==================================================
+
+buscarCliente( ) {
 
   const inputElement: HTMLInputElement = document.getElementById('buscarApellidos') as HTMLInputElement;
   const Apellidos: any = inputElement.value || null;
@@ -133,7 +88,7 @@ buscarPatente( ) {
   const inputElement1: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
   const Nombres: any = inputElement1.value || null;
 
-  this.personaService.buscarClientePorPlan( Apellidos, Nombres , this.planSeleccionado.toString()  )
+  this.personaService.buscarCliente( Apellidos, Nombres  )
           .subscribe( (resp: any) => {
 
             if( resp.length !== 0 ) {
@@ -214,10 +169,6 @@ cambiarDesde( valor: number ) {
 
 }
 
-
-header(text: any) {
-	return { text: text, margins: [0, 0, 0, 8] };
-}
 
 
 }

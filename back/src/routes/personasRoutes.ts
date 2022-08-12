@@ -15,14 +15,13 @@ class PersonasRoutes {
     config(): void {
         // Clientes
         this.router.get('/clientes/listar/:desde',personasController.listarClientes);
-
         // this.router.get('/clientes/listar/:desde', [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin],personasController.listarClientes);
-        this.router.put('/cliente/eliminar/:IdPersona', [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin], personasController.eliminarCliente);
-        this.router.put('/cliente/actualizar/:id',  [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin], personasController.actualizaCliente);  
-        this.router.post('/cliente' ,  [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin], personasController.createCliente); 
-        this.router.get('/clientes/plan/:desde/:IdPlan', [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin], personasController.listarClientesPlan);
-        this.router.put('/cliente/activar/:IdPersona',  [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin], personasController.activarCliente);  
+        
+        this.router.get('/clientes/busqueda/:pApellidos/:pNombres',personasController.buscarApellidoNombres);
 
+        this.router.get('/clientes/patente/:pPatente',personasController.buscarPatente);
+
+      
     }
 
 }

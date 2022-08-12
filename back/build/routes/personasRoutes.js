@@ -15,11 +15,8 @@ class PersonasRoutes {
         // Clientes
         this.router.get('/clientes/listar/:desde', clientesController_1.default.listarClientes);
         // this.router.get('/clientes/listar/:desde', [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin],personasController.listarClientes);
-        this.router.put('/cliente/eliminar/:IdPersona', [mdAutenticacion.verificaToken, mdAutenticacion.verificaProfesionalAdmin], clientesController_1.default.eliminarCliente);
-        this.router.put('/cliente/actualizar/:id', [mdAutenticacion.verificaToken, mdAutenticacion.verificaProfesionalAdmin], clientesController_1.default.actualizaCliente);
-        this.router.post('/cliente', [mdAutenticacion.verificaToken, mdAutenticacion.verificaProfesionalAdmin], clientesController_1.default.createCliente);
-        this.router.get('/clientes/plan/:desde/:IdPlan', [mdAutenticacion.verificaToken, mdAutenticacion.verificaProfesionalAdmin], clientesController_1.default.listarClientesPlan);
-        this.router.put('/cliente/activar/:IdPersona', [mdAutenticacion.verificaToken, mdAutenticacion.verificaProfesionalAdmin], clientesController_1.default.activarCliente);
+        this.router.get('/clientes/busqueda/:pApellidos/:pNombres', clientesController_1.default.buscarApellidoNombres);
+        this.router.get('/clientes/patente/:pPatente', clientesController_1.default.buscarPatente);
     }
 }
 const personasRoutes = new PersonasRoutes();

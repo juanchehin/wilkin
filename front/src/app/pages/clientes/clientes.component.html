@@ -70,7 +70,7 @@
                     </thead>
 
                     <tbody>
-                        <tr *ngFor="let cliente of clientes" [ngClass]="{'bg-danger text-warning': (cliente.ClasesDisponibles === 0) && (planSeleccionado === -1)}">
+                        <tr *ngFor="let cliente of clientes">
 
                             <td>{{ cliente.Apellidos }}</td>
                             <td>{{ cliente.Nombres }}</td>

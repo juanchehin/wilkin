@@ -199,6 +199,49 @@ public async listarClientesPlan(req: Request, res: Response): Promise<void> {
     })
  }
 
+ // ==================================================
+//        Busqueda por nombre - apellido
+// ==================================================
+public async buscarApellidoNombres(req: Request, res: Response): Promise<any> {
+
+    
+    console.log("req.params : ",req.params);
+
+    var Apellidos = req.params.pApellidos || '';
+    var Nombres = req.params.pNombres || '';
+
+    if(Apellidos === 'null')
+        Apellidos = '';
+
+    if(Nombres === 'null')
+        Nombres = '';
+    
+    pool.query(`call bsp_buscar_cliente_apellidos_nombres('${Apellidos}','${Nombres}')`, function(err: any, result: any, fields: any){
+        if(err){
+            
+            res.status(404).json({ text: "La personas no existe" });
+        }
+        console.log("result : ", result);
+        return res.json(result);
+    })
+}
+
+ // ==================================================
+//        Busqueda por nombre - apellido
+// ==================================================
+public async buscarPatente(req: Request, res: Response): Promise<any> {
+
+    const pPatente = req.params.pPatente;
+    
+    pool.query(`call bsp_buscar_cliente_patente('${pPatente}')`, function(err: any, result: any, fields: any){
+        if(err){
+            console.log("error : ", err);
+            res.status(404).json({ text: "La personas no existe" });
+        }
+        
+        return res.json(result);
+    })
+}
 }
 
 

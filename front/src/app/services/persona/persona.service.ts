@@ -163,17 +163,15 @@ activarCliente( IdPersona: any ) {
 }
 
 // ==================================================
-// Busca
+//
 // ==================================================
 
 dameCliente( IdCliente: string  ): any {
 
-  const url = URL_SERVICIOS + '/personas/clientes/dame/' + '/' + IdCliente;
+  const url = URL_SERVICIOS + '/personas/clientes/dame/' + IdCliente;
 
   return this.http.get(url);
 
-//    return this.http.get(url)
-//           .map( (resp: any) => resp[0]);
 }
 
 // ==================================================
@@ -220,7 +218,6 @@ eliminarCliente( IdPersona: any ) {
     }
 );
 
-  // return this.http.delete(url );
 }
 
 // ==================================================
@@ -228,18 +225,15 @@ eliminarCliente( IdPersona: any ) {
 // ==================================================
 
 editarCliente( Apellidos : string,
-  Nombres : string,
-   Observaciones : string,
-   Telefono : string,
- Correo : string ) {
+    Nombres : string,
+    Observaciones : string,
+    Telefono : string,
+    Correo : string
+ ) {
 
-  // const id = cliente.IdPersona;
   const id = 1;
 
   let url = URL_SERVICIOS + '/cliente/actualizar/' + id;
-
-  // url += '?token=' + this.token;  // query
-  // url += '?IdRol=' + this.IdRol;
 
   var cliente = {
     Apellidos,
@@ -258,6 +252,38 @@ editarCliente( Apellidos : string,
       }
     }
   );
+
+}
+
+// ==================================================
+//        Busca una persona por termino
+// ==================================================
+
+buscarPatente( termino: string ) {
+
+  console.log("Entra buscar patente",termino)
+
+  const url = URL_SERVICIOS + '/personas/clientes/patente/' + termino;
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+  )
+}
+
+
+// ==================================================
+//
+// ==================================================
+
+buscarCliente( Apellidos: string , Nombres: string  ): any {
+
+  const url = URL_SERVICIOS + '/personas/clientes/busqueda/' + Apellidos + '/' + Nombres;
+
+  return this.http.get(url);
 
 }
 
