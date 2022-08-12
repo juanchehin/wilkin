@@ -37,25 +37,25 @@
                 <span class="login100-form-title p-b-41">
 					Inicio de sesion
 				</span>
-                <form ngNativeValidate #f="ngForm" class="login100-form validate-form p-b-33 p-t-5" (ngSubmit)="ingresar(f)">
+                <!-- <form ngNativeValidate #f="ngForm" class="login100-form validate-form p-b-33 p-t-5" (ngSubmit)="ingresar(f)"> -->
 
-                    <div class="wrap-input100" data-validate="Ingrese el usuario">
-                        <input ngModel class="input100" required name="email" placeholder="Ingresa tu email">
-                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
-                    </div>
+                <div class="wrap-input100" data-validate="Ingrese el usuario">
+                    <input ngModel class="input100" required name="email" placeholder="Ingresa tu email">
+                    <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Ingrese la contraseña">
-                        <input ngModel class="input100" type="password" name="password" required placeholder="Contraseña">
-                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                    </div>
+                <div class="wrap-input100 validate-input" data-validate="Ingrese la contraseña">
+                    <input ngModel class="input100" type="password" name="password" required placeholder="Contraseña">
+                    <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                </div>
 
-                    <div class="container-login100-form-btn m-t-32">
-                        <button type="submit" class="login100-form-btn">
+                <div class="container-login100-form-btn m-t-32">
+                    <button type="submit" class="login100-form-btn">
 							Ingresar
 						</button>
-                    </div>
+                </div>
 
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
