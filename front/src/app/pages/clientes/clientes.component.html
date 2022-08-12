@@ -62,6 +62,7 @@
                             <!-- <th>Foto</th> -->
                             <th>Apellidos</th>
                             <th>Nombres</th>
+                            <th>Patente</th>
                             <th>Celular</th>
                             <th>Direccion</th>
                             <th></th>
@@ -73,6 +74,7 @@
 
                             <td>{{ cliente.Apellidos }}</td>
                             <td>{{ cliente.Nombres }}</td>
+                            <td>{{ cliente.Patente }}</td>
                             <td>{{ cliente.Celular }}</td>
                             <td>{{ cliente.Direccion }}</td>
 
@@ -84,16 +86,11 @@
                                             assignment_ind
                                             </i>
                                     </button>
-                                    <button title="Historial asistencias" [routerLink]="['/cliente/historico', cliente.IdCliente ] " class="btn btn-info ">
+                                    <button title="Historial" [routerLink]="['/cliente/historico', cliente.IdCliente ] " class="btn btn-info ">
                                         <i class="material-icons ">
                                             grading
                                             </i>
                                     </button>
-                                    <button title="Asociar vehiculo" [routerLink]="['/cliente/vehiculo', cliente.IdCliente ] " class="btn btn-info ">
-                                      <i class="material-icons ">
-                                          grading
-                                          </i>
-                                  </button>
                                     <button title="Borrar cliente" (click)="eliminarCliente( cliente ) " class="btn btn-danger ">
                                         <i class="material-icons ">
                                         delete
