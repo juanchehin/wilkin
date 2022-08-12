@@ -55,45 +55,24 @@ cargarCliente() {
 
   this.date = this.activatedRoute.snapshot.paramMap.get('id');
 
-  this.personaService.damePersona( this.date )
-             .subscribe( (resp: any) => {
+  // this.personaService.damePersona( this.date )
+  //            .subscribe( (resp: any) => {
 
-              console.log("resp es : ",resp)
-              this.persona = resp[0];
+  //             console.log("resp es : ",resp)
+  //             this.persona = resp[0];
 
-              this.Correo = this.persona.Correo;
-              this.Password =  this.persona.Password;
-              this.Apellidos =  this.persona.Apellidos;
-              this.Nombres = this.persona.Nombres;
-              this.Telefono =  this.persona.Telefono;
-              this.Observaciones = this.persona.Observaciones;
+  //             this.Correo = this.persona.Correo;
+  //             this.Password =  this.persona.Password;
+  //             this.Apellidos =  this.persona.Apellidos;
+  //             this.Nombres = this.persona.Nombres;
+  //             this.Telefono =  this.persona.Telefono;
+  //             this.Observaciones = this.persona.Observaciones;
 
-              this.cargando = false;
+  //             this.cargando = false;
 
-            });
+  //           });
 
 }
-// ==================================================
-//        Controla que las contraseñas sean iguales
-// ==================================================
-compararContraseñas( campo1: string, campo2: string ) {
-
-  return ( group: FormGroup ) => {
-
-    const pass1 = group.controls[campo1].value;
-    const pass2 = group.controls[campo2].value;
-
-    if ( pass1 === pass2 ) {
-      return null;
-    }
-
-    return {
-      sonIguales: true
-    };
-
-  };
-}
-
 
 // =================================================
 //        Actualiza Cliente
@@ -101,18 +80,6 @@ compararContraseñas( campo1: string, campo2: string ) {
 
 actualizaCliente( ) {
 
-  // var fechaFormat = this.FechaNac.split(" ")[0].split("-").reverse().join("-");
-
-
-  if(this.forma.value.Password !== this.forma.value.Password2){
-    this.banderaPass = true;
-    Swal.fire({
-      icon: 'error',
-      title: 'Hubo un problema al actualizar',
-      text: 'Las contraseñas deben coincidir',
-    });
-    return;
-  }
 
   this.personaService.editarCliente( this.forma.value.Apellidos || this.Apellidos,
      this.forma.value.Nombres || this.Nombres,

@@ -1,0 +1,45 @@
+<div class="container">
+    <h1 class="well">Panel principal</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2><i class="material-icons "> group</i></h2>
+                    <h5 class="card-title">Clientes</h5>
+                    <a routerLink="/clientes" class=" btn btn-primary ">Acceder</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2><i class="material-icons ">format_color_fill</i></h2>
+                    <h5 class="card-title">Aceites</h5>
+                    <button [routerLink]="[ '/aceites' ]" class=" btn btn-primary ">Acceder</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2><i class="material-icons ">settings_input_component</i></h2>
+                    <h5 class="card-title">Filtros</h5>
+                    <button [routerLink]="['/filtros']" class=" btn btn-primary ">Acceder</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2><i class="material-icons ">power_settings_new</i></h2>
+                    <h5 class="card-title">Salir</h5>
+                    <button (click)="personaService.logout() " class=" btn btn-dark ">Salir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+</div>

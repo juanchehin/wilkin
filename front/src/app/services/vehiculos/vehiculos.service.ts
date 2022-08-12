@@ -10,19 +10,22 @@ const URL_SERVICIOS = environment.URL_SERVICIOS;
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService {
+export class VechiculosService {
 
   persona!: any;
   personaValor!: any;
   personaId!: any;
+  IdRol: any;
   token!: any;
   usuario: any;
+  menu!: any;
 
 
   constructor(
     public http: HttpClient,
     public router: Router ) {
     this.cargarStorage();
+    this.cargarPersonas();
 
   }
 
@@ -50,7 +53,8 @@ login(usuario: string, pass: string): any {
                   return false;
                 }
 
-      this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu);
+      this.IdRol = resp.IdRol;
+      this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.IdRol);
       this.cargarStorage();
 
       return true;
@@ -63,7 +67,7 @@ login(usuario: string, pass: string): any {
 //        Guarda la info en el localstorage
 //  Guarda en el storage la informacion recibida por parametros
 // ==================================================
-guardarStorage( id: string, token: string, usuario: any, menu: any ) {
+guardarStorage( id: string, token: string, usuario: any, menu: any, IdRol: any ) {
 
   localStorage.setItem('token', token );
 
@@ -123,6 +127,69 @@ logout() {
 
   this.router.navigate(['/login']);
 }
+// ====================================================================================================================
+// =========================================== PERSONAS ===================================================================
+// ====================================================================================================================
+
+// ==================================================
+//        Cargar persona - Peticion GET al server
+// ==================================================
+cargarPersonas( desde: number = 0 ) {
+
+  const url = URL_SERVICIOS + '/personas?desde=' + desde;
+
+  return this.http.get( url );
+
+}
+
+
+// ==================================================
+// Devuelve los roles de la BD
+// ==================================================
+
+dameRoles( ) {
+
+  let url = URL_SERVICIOS + '/personas/roles/listar';
+
+}
+// ==================================================
+//        Da de baja una persona
+// ==================================================
+
+bajaPersona( termino: string ) {
+
+    let url = URL_SERVICIOS + '/personas/';
+    url += '&termino=' + termino;
+    url += '&IdRol=' + this.IdRol;
+
+}
+
+// ==================================================
+//        Obtiene una persona de la BD
+// ==================================================
+
+damePersona( termino: string ): any {
+
+
+  const url = URL_SERVICIOS + '/personas/' + termino;
+
+  return this.http.get(url);
+
+}
+
+
+// ==================================================
+//        Busca una persona por termino
+// ==================================================
+
+  buscarPersona( termino: string ) {
+
+    const url = URL_SERVICIOS + '/personas/busqueda/' + termino;
+
+    // return this.http.get(url)
+    //         .map( (resp: any) => resp[0]);
+  }
+
 
 // ====================================================================================================================
 // =========================================== CLIENTES ===================================================================
@@ -131,9 +198,10 @@ logout() {
 // ==================================================
 //        Cargar clientes - Peticion GET al server
 // ==================================================
-cargarClientes( desde: number = 0 ) {
+cargarClientesPlanEstado( desde: number = 0 , IdPlan: any) {
 
-  let url = URL_SERVICIOS + '/personas/clientes/listar/' + desde;  // query
+  let url = URL_SERVICIOS + '/personas/clientes/plan/' + desde + '/' + IdPlan ;  // query
+  url += '?IdRol=' + this.IdRol;
 
   return this.http.get(
     url, {
@@ -150,6 +218,7 @@ cargarClientes( desde: number = 0 ) {
 activarCliente( IdPersona: any ) {
 
   let url = URL_SERVICIOS + '/personas/cliente/activar/' + IdPersona;
+  url += '?IdRol=' + this.IdRol;
 
   return this.http.put(
     url,
@@ -190,6 +259,7 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : s
   ]
 
   let url = URL_SERVICIOS + '/personas/cliente';
+  url += '?IdRol=' + this.IdRol;
 
   return this.http.post(
     url,
@@ -209,6 +279,9 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : s
 eliminarCliente( IdPersona: any ) {
 
   let url = URL_SERVICIOS + '/personas/cliente/eliminar/' + IdPersona;
+
+  // url += '?token=' + this.token;  // query
+  url += '?IdRol=' + this.IdRol;
 
   return this.http.put(
     url,

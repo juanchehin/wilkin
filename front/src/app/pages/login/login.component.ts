@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { PersonaService } from '../../services/service.index';
-declare var Swal: any;
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -28,8 +29,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.personaService.login(forma.value.email,forma.value.password)
+    this.personaService.login(forma.value.usuario,forma.value.password)
         .subscribe((resp: any) => {
+
+          console.log("resp es : ",resp);
 
           if ( resp === true) {
             this.router.navigate(['/principal']);

@@ -22,27 +22,24 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-6 form-group">
-        <label class="control-label">Filtrar por :  </label>
-        <select id="Planes" [(ngModel)]="planSeleccionado" (ngModelChange)="cambios($event)" class="browser-default custom-select">
-            <option selected value="-1"> Todos </option>
-            <option value="0"> Inscriptos en algun plan </option>
-        </select>
-    </div>
-    <div class="col-sm-6 form-group">
-        <div class="btn-group float-right" role="group" style="margin-top: 30px;">
-            <button [routerLink]="['/mantenimiento/cliente']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                <i class="fa fa-plus"></i>
-                Nuevo Cliente
-                </button>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card alert alert-success">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label>Patente: </label><input #input type="text" class="form-control" placeholder="Patente del automovil..." id="buscarPatente">
+                </div>
 
-            <button (click)="cargarClientes( )" class="btn btn-success">
-                    Actualizar lista
-                <i class="material-icons ">
-                    wifi_protected_setup
-                    </i>
-                </button>
+                <div class="col-sm-6 form-group">
+                    <button (click)="buscarPatente( )" class="btn btn-primary">
+                      Consulta
+                      <i class="material-icons ">
+                          search
+                          </i>
+                      </button>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
@@ -58,9 +55,6 @@
                     <div class="col-sm-6 form-group">
                         <h3 class="card-title">Cantidad clientes ( <small> {{ totalClientes }} </small> )</h3>
                     </div>
-                    <!-- <div class="float-right text-align:right"> -->
-
-                    <!-- </div> -->
                 </div>
                 <table class="table table-hover">
                     <thead>
@@ -68,8 +62,8 @@
                             <!-- <th>Foto</th> -->
                             <th>Apellidos</th>
                             <th>Nombres</th>
-                            <th *ngIf="(planSeleccionado.toString() !== '-1')">Clases disponibles</th>
-                            <th *ngIf="(planSeleccionado.toString() === '0')">Plan</th>
+                            <th>Celular</th>
+                            <th>Direccion</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -79,46 +73,25 @@
 
                             <td>{{ cliente.Apellidos }}</td>
                             <td>{{ cliente.Nombres }}</td>
-                            <!-- ================= Clases disponibles =================================== -->
-                            <td *ngIf="(planSeleccionado.toString() !== '-1')">
-                                {{ cliente.ClasesDisponibles }}
-                            </td>
-                            <!-- ============================== Plan =================================== -->
-                            <td *ngIf="(planSeleccionado.toString() === '0')">
-                                <!-- {{ cliente.Plan }} -->
-                            </td>
+                            <td>{{ cliente.Celular }}</td>
+                            <td>{{ cliente.Direccion }}</td>
+
                             <!-- ============================== Grupo de Botones =================================== -->
                             <td>
                                 <div class=" btn-group " role="group " aria-label="Basic example ">
-
-                                    <button title="Mediciones" [routerLink]="[ '/cliente/mediciones', cliente.IdPersona] " class="btn btn-secondary ">
-                                        <i class="material-icons">
-                                            format_list_bulleted
-                                            </i>
-                                    </button>
-                                    <button title="Nuevo ingreso" [routerLink]="[ '/caja', cliente.IdPersona] " class="btn btn-success ">
-                                        <i class="material-icons ">
-                                            attach_money
-                                        </i>
-                                    </button>
-                                    <button title="Graficas" [routerLink]="[ '/cliente/graficas', cliente.IdPersona ] " class="btn btn-primary">
-                                        <i class="material-icons ">
-                                            insert_chart_outlined
-                                        </i>
-                                    </button>
-                                    <button title="Editar/Perfil" [routerLink]="[ '/mantenimiento/cliente/editar', cliente.IdPersona ] " class="btn btn-muted ">
+                                    <button title="Editar/Perfil" [routerLink]="[ '/cliente/editar', cliente.IdCliente ] " class="btn btn-muted ">
                                         <i class="material-icons ">
                                             assignment_ind
                                             </i>
                                     </button>
-                                    <button title="Historial asistencias" [routerLink]="['/cliente/asistencias/historico', cliente.IdPersona ] " class="btn btn-info ">
+                                    <button title="Historial asistencias" [routerLink]="['/cliente/historico', cliente.IdCliente ] " class="btn btn-info ">
                                         <i class="material-icons ">
                                             grading
                                             </i>
                                     </button>
-                                    <button title="Tomar fotografia" [routerLink]="['/cliente/fotografia', cliente.IdPersona ] " class="btn btn-secondary ">
+                                    <button title="Asociar vehiculo" [routerLink]="['/cliente/vehiculo', cliente.IdCliente ] " class="btn btn-info ">
                                       <i class="material-icons ">
-                                        photo_camera
+                                          grading
                                           </i>
                                   </button>
                                     <button title="Borrar cliente" (click)="eliminarCliente( cliente ) " class="btn btn-danger ">
@@ -131,11 +104,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <button (click)="cambiarDesde(-5) " class="btn btn-secondary ">
+                <button (click)="cambiarDesde(-15) " class="btn btn-secondary ">
                     Anteriores
                   </button>
 
-                <button (click)="cambiarDesde(5) " class="btn btn-secondary " style="margin-left: 50px; ">
+                <button (click)="cambiarDesde(15) " class="btn btn-secondary " style="margin-left: 50px; ">
                       Siguientes
                   </button>
             </div>

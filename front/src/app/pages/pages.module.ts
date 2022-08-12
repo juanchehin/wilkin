@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ClienteComponent } from './clientes/cliente.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
+import { DashboardComponent } from './principal/dashboard.component';
 
 
 
@@ -19,6 +20,7 @@ import { EditarclienteComponent } from './clientes/editarcliente.component';
         ClientesComponent,
         ClienteComponent,
         EditarclienteComponent,
+        DashboardComponent
       ],
     exports: [
         PagesComponent

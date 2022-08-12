@@ -21,11 +21,11 @@ class LoginController {
     // ========================================================
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuario = req.body.Usuario;
-            const pass = req.body.Password;
+            console.log("req.body es : ", req.body);
+            const usuario = req.body.usuario;
+            const pass = req.body.pass;
             // 
-            database_1.default.query(`call bsp_dame_persona_correo_pass('${usuario}','${pass}')`, function (err, result) {
-                var menu = [];
+            database_1.default.query(`call bsp_dame_persona_usuario_pass('${usuario}','${pass}')`, function (err, result) {
                 if (err) {
                     // res.send({ err:'err' })
                     console.log("err es : ", err);

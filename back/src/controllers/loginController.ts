@@ -14,11 +14,12 @@ class LoginController {
 
 public async login(req: Request, res: Response){
 
-    const usuario = req.body.Usuario;
-    const pass = req.body.Password;
+    console.log("req.body es : ", req.body);
+
+    const usuario = req.body.usuario;
+    const pass = req.body.pass;
 // 
-pool.query(`call bsp_dame_persona_correo_pass('${usuario}','${pass}')`, function(err: any, result: string | any[]){
-    var menu: any = [];
+pool.query(`call bsp_dame_persona_usuario_pass('${usuario}','${pass}')`, function(err: any, result: string | any[]){
 
     if(err){
         // res.send({ err:'err' })

@@ -6,6 +6,7 @@ import { ClienteComponent } from './clientes/cliente.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './principal/dashboard.component';
 
 const pagesRoutes: Routes = [
 
@@ -14,7 +15,7 @@ const pagesRoutes: Routes = [
         path: '',
         component: PagesComponent,
         children: [
-            // Clientes
+            { path: 'principal', component: DashboardComponent },
             { path: 'clientes', component: ClientesComponent },
             { path: 'cliente', component: ClienteComponent },
             { path: 'cliente/editar/:id', component: EditarclienteComponent },

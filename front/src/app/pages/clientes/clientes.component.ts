@@ -4,7 +4,6 @@ import { PersonaService } from '../../services/persona/persona.service';
 
 // const Swal = require('sweetalert2');
 
-
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -82,7 +81,7 @@ cambiosEstado(nuevoEstado: any) {
     const buscarNombre: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
     buscarNombre.value = '';
 
-    this.personaService.cargarClientesPlanEstado( this.desde , this.planSeleccionado )
+    this.personaService.cargarClientes( this.desde )
                .subscribe( (resp: any) => {
 
                 this.totalClientes = resp[1][0].cantCli;
@@ -122,6 +121,31 @@ cambiosEstado(nuevoEstado: any) {
 
   }
 
+// ==================================================
+//  Busca el cliente por patente
+// ==================================================
+
+buscarPatente( ) {
+
+  const inputElement: HTMLInputElement = document.getElementById('buscarApellidos') as HTMLInputElement;
+  const Apellidos: any = inputElement.value || null;
+
+  const inputElement1: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
+  const Nombres: any = inputElement1.value || null;
+
+  this.personaService.buscarClientePorPlan( Apellidos, Nombres , this.planSeleccionado.toString()  )
+          .subscribe( (resp: any) => {
+
+            if( resp.length !== 0 ) {
+              this.clientes = resp[0];
+              this.totalClientes = resp[1][0].cantCli;
+            } else {
+              this.totalClientes = 0;
+              this.clientes = resp[0];
+            }
+          });
+
+}
 
 // ==================================================
 //        Borra una persona
