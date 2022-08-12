@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 var mdAutenticacion = require('../middlewares/autenticacion');
 
-import personasController from '../controllers/personasController';
+import personasController from '../controllers/clientesController';
 
 class PersonasRoutes {
 

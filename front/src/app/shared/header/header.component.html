@@ -27,29 +27,11 @@
         <nav class="navbar navbar-expand-lg  bg-dark">
             <div class="container-fluid">
 
-                <img data-src="../../../assets/images/logo.jpg" class="" src="../../../assets/images/logo.jpg" width="80" height="80">
+                <img data-src="../../../assets/images/logo.jpg" src="../../../assets/images/logo.jpg" width="280" height="80">
 
                 <div class="collapse navbar-collapse" id="navbarsHeader">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/principal">Inicio</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/acerca">Acerca de nosotros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/profesionales">Profesionales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/galeria">Galeria</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/contacto">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/planes">Planes</a>
-                        </li>
                         <!-- <li class="nav-item" *ngIf="!comprobarLogueo()">
                             <a (click)="navegar()">
                                 <button class="btn waves-effect waves-light btn-rounded btn-primary "><i class="material-icons ">
@@ -67,22 +49,6 @@
                     <!-- </i>{{ correoActual }}</button> -->
                 </div>
             </div>
-
-            <!-- <div class="float-right dropdown " *ngIf="!comprobarLogueo() && !comprobarRole()">
-
-                <button class="dropbtn " style="margin-right: 90px; margin-right: 200px; "><i class="material-icons ">
-                    person
-                </i>{{ correoActual }}</button>
-
-                <div class="dropdown-content " *ngIf="!comprobarRole() ">
-                    <li>
-                        <a [routerLink]="[ '/cliente' , 'mediciones' , IdPersona ]"><i class="material-icons ">accessibility</i>Mis mediciones</a>
-                        <a [routerLink]="[ '/cliente' , 'asistencias' , IdPersona ] "><i class="material-icons "> assignment_ind</i>Mis asistencias</a>
-                    </li>
-                    <a (click)="personaService.logout() "><i class="material-icons ">power_settings_new</i>     Salir</a>
-                </div>
-
-            </div> -->
 
             <div class="text-right ">
                 <button *ngIf="comprobarLogueo() && paginaInicioSesion() " [routerLink]="[ '/login'] " type="button " class="btn waves-effect waves-light btn-rounded btn-primary ">
