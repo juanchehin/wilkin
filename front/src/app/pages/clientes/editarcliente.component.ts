@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from '../../services/service.index';
-
-const Swal = require('sweetalert2');
+declare var Swal: any;
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 

@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonaService } from '../../services/service.index';
 // import Swal from 'sweetalert2';
-const Swal = require('sweetalert2');
+// const Swal = require('sweetalert2');
+declare var Swal: any;
 import { Router } from '@angular/router';
 
 @Component({

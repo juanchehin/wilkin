@@ -111,33 +111,6 @@ estaLogueado() {
 
     let url = URL_SERVICIOS + '/login/renuevatoken';
 
-    // return this.http.get( url,
-    //   {
-    //     headers: {
-    //       token: this.token
-    //     }
-    //   }
-    //   ).map( (resp: any) => {
-
-    //               this.token = resp.token;
-    //               localStorage.setItem('token', this.token );
-
-    //               return true;
-    //             })
-    //             .catch( err => {
-    //               this.router.navigate(['/login']);
-    //               Swal.fire({
-    //                 position: 'top-end',
-    //                 icon: 'error',
-    //                 title: 'No se pudo renovar token',
-    //                 showConfirmButton: false,
-    //                 timer: 2000
-    //               });
-    //               // tslint:disable-next-line: deprecation
-    //               return Observable.throw( err );
-    //             });
-
-
   }
 
 // ==================================================
@@ -178,13 +151,6 @@ dameRoles( ) {
 
   let url = URL_SERVICIOS + '/personas/roles/listar';
 
-  // return this.http.get(url,
-  //     {
-  //       headers: {
-  //         token: this.token
-  //       }
-  //     }
-  //   ).map( (resp: any) => resp[0]);
 }
 // ==================================================
 //        Da de baja una persona
@@ -196,21 +162,6 @@ bajaPersona( termino: string ) {
     url += '&termino=' + termino;
     url += '&IdRol=' + this.IdRol;
 
-    // return this.http.put(url,
-    //   termino,
-    //   {
-    //     headers: {
-    //       token: this.token
-    //     }
-    //   }).map( (resp: any) => {
-    //           Swal.fire({
-    //             position: 'top-end',
-    //             icon: 'success',
-    //             title: 'Persona eliminada',
-    //             showConfirmButton: false,
-    //             timer: 2000
-    //           });
-    //         });
 }
 
 // ==================================================
@@ -219,7 +170,6 @@ bajaPersona( termino: string ) {
 
 damePersona( termino: string ): any {
 
-  console.log("pasa damePersona");
 
   const url = URL_SERVICIOS + '/personas/' + termino;
 
@@ -238,43 +188,6 @@ damePersona( termino: string ): any {
 
     // return this.http.get(url)
     //         .map( (resp: any) => resp[0]);
-  }
-
-// ==================================================
-//        Actualizar persona - VERIFICAR SU FUNCIONAMIENTO - 05/02/20
-// ==================================================
-
-  actualizarPersona( persona: Persona) {
-    let url = URL_SERVICIOS + '/persona/' + this.persona.Correo;
-    url += '?IdRol=' + this.IdRol;
-
-    // return this.http.put(
-    //   url,
-    //   persona,
-    //   {
-    //     headers: {
-    //       token: this.token
-    //     }
-    //   }
-    //   ).map( (resp: any) => {
-    //           const personaDB: Persona = resp.usuario;
-
-    //           const param = String(personaDB.IdPersona);
-
-    //           if ( persona.IdPersona === this.persona.IdPersona ) {
-
-    //             this.guardarStorage( param , this.token , this.usuario , this.menu , this.IdRol);
-    //           }
-
-    //           this.guardarStorage( param , this.token , this.usuario , this.menu , this.IdRol);
-    //           Swal.fire({
-    //             position: 'top-end',
-    //             icon: 'success',
-    //             title: 'Usuario actualizado',
-    //             showConfirmButton: false,
-    //             timer: 2000
-    //           });
-    //         });
   }
 
 
@@ -394,116 +307,31 @@ editarCliente( Apellidos : string,
  Correo : string ) {
 
   // const id = cliente.IdPersona;
+  const id = 1;
 
-  // let url = URL_SERVICIOS + '/cliente/actualizar/' + id;
+  let url = URL_SERVICIOS + '/cliente/actualizar/' + id;
 
   // url += '?token=' + this.token;  // query
   // url += '?IdRol=' + this.IdRol;
 
+  var cliente = {
+    Apellidos,
+    Nombres,
+    Observaciones,
+    Telefono,
+    Correo
+  }
 
-  // return this.http.put(url ,
-  //    cliente,
-  //    {
-  //     headers: {
-  //       token: this.token
-  //     }
-  //   }
-  // );
-}
 
-// ====================================================================================================================
-// =========================================== PROFESIONALES ===================================================================
-// ====================================================================================================================
-
-// ==================================================
-//        Crear profesional
-// ==================================================
-
-crearProfesional( entrenador: Profesional ) {
-
-  let url = URL_SERVICIOS + '/personas/profesional';
-  url += '?IdRol=' + this.IdRol;
-
-  return this.http.post(url,
-    entrenador,
-    {
+  return this.http.put(url ,
+     cliente,
+     {
       headers: {
         token: this.token
       }
     }
   );
-}
-
-// ==================================================
-//        Editar profesional
-// ==================================================
-
-editarProfesional( profesional: Profesional ) {
-
-  const id = profesional.IdPersona;
-
-  let url = URL_SERVICIOS + '/personas/profesional/actualizar/' + id;
-  url += '?IdRol=' + this.IdRol;
-
-  return this.http.put(url,
-    profesional,
-    {
-      headers: {
-        token: this.token
-      }
-    }
-  );
-}
-
-// ==================================================
-//        Cargar profesionales - Peticion GET al server - Debe pasar por el ADMIN GUARD y el LOGIN GUARD
-// ==================================================
-cargarProfesionales(  ) {
-
-  console.log('entra en cargarProfesionales');
-
-    let url = URL_SERVICIOS + '/personas/profesionales';
-    url += '?IdRol=' + this.IdRol;  // params
-    return this.http.get( url );
 
 }
-// ==================================================
-//        Cargar el personal del gimnasio
-// ==================================================
-cargarPersonal( desde: number , incluyeBajas: number ) {
-
-  console.log('entra en cargarPersonal');
-
-  let url = URL_SERVICIOS + '/personas/personal/listar/' + desde + '/' + incluyeBajas;
-
-  url += '?IdRol=' + this.IdRol;
-
-  return this.http.get(
-    url, {
-      headers: {
-        token: this.token
-      }
-    }
-);
-
-}
-// ==================================================
-//        Elimina un profesional
-// ==================================================
-
-eliminarProfesional( IdPersona: any ) {
-
-  let url = URL_SERVICIOS + '/personas/profesional/eliminar/' + IdPersona;
-  url += '?IdRol=' + this.IdRol;
-
-  return this.http.delete(url,
-    {
-      headers: {
-        token: this.token
-      }
-    }
-  );
-}
-
 
 }

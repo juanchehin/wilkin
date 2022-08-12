@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import Swal from 'sweetalert2';
+declare var Swal: any;
 import { PersonaService } from '../../services/persona/persona.service';
 
-// para generar pdfs lado cliente
-const pdfMake = require('pdfmake/build/pdfmake.js');
-const pdfFonts = require('pdfmake/build/vfs_fonts.js');
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-const Swal = require('sweetalert2');
+// const Swal = require('sweetalert2');
 
 
 @Component({

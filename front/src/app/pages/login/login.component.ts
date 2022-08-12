@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { PersonaService } from '../../services/service.index';
-// import Swal from 'sweetalert2';
-const Swal = require('sweetalert2')
+declare var Swal: any;
 
 @Component({
   selector: 'app-login',

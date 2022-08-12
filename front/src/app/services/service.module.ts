@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonaService,VerificaTokenGuard } from './service.index';
+import { PersonaService } from './service.index';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     PersonaService,
     // LoginGuardGuard,
-    VerificaTokenGuard
+    // VerificaTokenGuard
   ]
 })
 export class ServiceModule { }
