@@ -10,22 +10,18 @@ const URL_SERVICIOS = environment.URL_SERVICIOS;
 @Injectable({
   providedIn: 'root'
 })
-export class VechiculosService {
+export class VehiculosService {
 
   persona!: any;
-  personaValor!: any;
   personaId!: any;
-  IdRol: any;
   token!: any;
   usuario: any;
-  menu!: any;
 
 
   constructor(
     public http: HttpClient,
     public router: Router ) {
     this.cargarStorage();
-    this.cargarPersonas();
 
   }
 
@@ -53,7 +49,6 @@ login(usuario: string, pass: string): any {
                   return false;
                 }
 
-      this.IdRol = resp.IdRol;
       this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu, resp.IdRol);
       this.cargarStorage();
 
@@ -127,98 +122,18 @@ logout() {
 
   this.router.navigate(['/login']);
 }
-// ====================================================================================================================
-// =========================================== PERSONAS ===================================================================
-// ====================================================================================================================
-
-// ==================================================
-//        Cargar persona - Peticion GET al server
-// ==================================================
-cargarPersonas( desde: number = 0 ) {
-
-  const url = URL_SERVICIOS + '/personas?desde=' + desde;
-
-  return this.http.get( url );
-
-}
-
-
-// ==================================================
-// Devuelve los roles de la BD
-// ==================================================
-
-dameRoles( ) {
-
-  let url = URL_SERVICIOS + '/personas/roles/listar';
-
-}
-// ==================================================
-//        Da de baja una persona
-// ==================================================
-
-bajaPersona( termino: string ) {
-
-    let url = URL_SERVICIOS + '/personas/';
-    url += '&termino=' + termino;
-    url += '&IdRol=' + this.IdRol;
-
-}
-
-// ==================================================
-//        Obtiene una persona de la BD
-// ==================================================
-
-damePersona( termino: string ): any {
-
-
-  const url = URL_SERVICIOS + '/personas/' + termino;
-
-  return this.http.get(url);
-
-}
-
-
-// ==================================================
-//        Busca una persona por termino
-// ==================================================
-
-  buscarPersona( termino: string ) {
-
-    const url = URL_SERVICIOS + '/personas/busqueda/' + termino;
-
-    // return this.http.get(url)
-    //         .map( (resp: any) => resp[0]);
-  }
-
 
 // ====================================================================================================================
 // =========================================== CLIENTES ===================================================================
 // ====================================================================================================================
 
-// ==================================================
-//        Cargar clientes - Peticion GET al server
-// ==================================================
-cargarClientesPlanEstado( desde: number = 0 , IdPlan: any) {
 
-  let url = URL_SERVICIOS + '/personas/clientes/plan/' + desde + '/' + IdPlan ;  // query
-  url += '?IdRol=' + this.IdRol;
-
-  return this.http.get(
-    url, {
-      headers: {
-        token: this.token
-      }
-    }
-);
-
-}
 // ==================================================
 //  Activa un cliente (caso en que el cliente se dio de baja y desea reactivarse)
 // ==================================================
 activarCliente( IdPersona: any ) {
 
   let url = URL_SERVICIOS + '/personas/cliente/activar/' + IdPersona;
-  url += '?IdRol=' + this.IdRol;
 
   return this.http.put(
     url,
@@ -259,7 +174,6 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : s
   ]
 
   let url = URL_SERVICIOS + '/personas/cliente';
-  url += '?IdRol=' + this.IdRol;
 
   return this.http.post(
     url,
@@ -279,9 +193,6 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : s
 eliminarCliente( IdPersona: any ) {
 
   let url = URL_SERVICIOS + '/personas/cliente/eliminar/' + IdPersona;
-
-  // url += '?token=' + this.token;  // query
-  url += '?IdRol=' + this.IdRol;
 
   return this.http.put(
     url,
@@ -333,5 +244,18 @@ editarCliente( Apellidos : string,
   );
 
 }
+
+
+// ==================================================
+//
+// ==================================================
+cargarHistorico( IdCliente: number ) {
+
+  const url = URL_SERVICIOS + '/personas/cliente/historico/' + IdCliente;
+
+  return this.http.get( url );
+
+}
+
 
 }
