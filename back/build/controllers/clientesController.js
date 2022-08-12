@@ -185,7 +185,6 @@ class PersonasController {
     // ==================================================
     buscarApellidoNombres(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("req.params : ", req.params);
             var Apellidos = req.params.pApellidos || '';
             var Nombres = req.params.pNombres || '';
             if (Apellidos === 'null')

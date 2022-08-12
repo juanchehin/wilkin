@@ -1,48 +1,42 @@
+<br>
 <div class="row animated fadeIn">
-    <div class="col-12">
+    <div class="col-6">
         <div class="card alert alert-primary">
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label>Apellidos: </label><input (keyup.enter)="buscarCliente( )" #input type="text" class="form-control" placeholder="Apellidos..." id="buscarApellidos">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label>Nombres:  </label><input (keyup.enter)="buscarCliente( )" #input type="text" class="form-control" placeholder="Nombres..." id="buscarNombres">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <button (click)="buscarCliente( )" class="btn btn-primary">
+            <div class="col-sm-6 form-group">
+                <label>Apellidos: </label><input (keyup.enter)="buscarCliente( )" #input type="text" class="form-control" placeholder="Apellidos..." id="buscarApellidos">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Nombres:  </label><input (keyup.enter)="buscarCliente( )" #input type="text" class="form-control" placeholder="Nombres..." id="buscarNombres">
+            </div>
+            <div class="col-sm-6 form-group">
+                <button (click)="buscarCliente( )" class="btn btn-primary">
                         Consulta
                         <i class="material-icons ">
                             search
-                            </i>
-                        </button>
-                </div>
-
+                         </i>
+                </button>
             </div>
         </div>
     </div>
-</div>
 
-<div class="row animated fadeIn">
-    <div class="col-12">
+    <div class="col-6">
         <div class="card alert alert-success">
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label>Patente: </label><input #input type="text" class="form-control" placeholder="Patente del automovil..." id="buscarPatente">
                 </div>
-
-                <div class="col-sm-6 form-group">
-                    <button (click)="buscarPatente( )" class="btn btn-primary">
-                      Consulta
-                      <i class="material-icons ">
-                          search
-                          </i>
-                      </button>
-                </div>
-
             </div>
+            <button (click)="buscarPatente( )" class="btn btn-primary">
+            Consulta
+            <i class="material-icons ">
+                search
+                </i>
+            </button>
         </div>
+
     </div>
 </div>
+
 
 <div class="row">
 
@@ -59,7 +53,6 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <!-- <th>Foto</th> -->
                             <th>Apellidos</th>
                             <th>Nombres</th>
                             <th>Patente</th>

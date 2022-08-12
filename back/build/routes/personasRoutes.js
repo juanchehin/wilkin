@@ -14,7 +14,6 @@ class PersonasRoutes {
     config() {
         // Clientes
         this.router.get('/clientes/listar/:desde', clientesController_1.default.listarClientes);
-        // this.router.get('/clientes/listar/:desde', [mdAutenticacion.verificaToken,mdAutenticacion.verificaProfesionalAdmin],personasController.listarClientes);
         this.router.get('/clientes/busqueda/:pApellidos/:pNombres', clientesController_1.default.buscarApellidoNombres);
         this.router.get('/clientes/patente/:pPatente', clientesController_1.default.buscarPatente);
     }

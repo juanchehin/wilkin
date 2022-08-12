@@ -7,20 +7,29 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './principal/dashboard.component';
+import { LoginGuardGuard } from '../services/guards/login-guard.guard';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 const pagesRoutes: Routes = [
 
-    // Patch donde pueden acceder los profesionales y administradores
+  {
+    path: '',
+    component: PagesComponent,
+    children: [
+        { path: 'login', component: LoginComponent },
+
+        { path: '', redirectTo: 'login', pathMatch: 'full' }
+    ]
+  },
     {
         path: '',
         component: PagesComponent,
+        canActivate: [LoginGuardGuard, VerificaTokenGuard],
         children: [
             { path: 'principal', component: DashboardComponent },
             { path: 'clientes', component: ClientesComponent },
             { path: 'cliente', component: ClienteComponent },
             { path: 'cliente/editar/:id', component: EditarclienteComponent },
-            { path: 'login', component: LoginComponent },
-
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }

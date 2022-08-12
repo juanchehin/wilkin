@@ -53,4 +53,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+// ==================================================
+//
+// ==================================================
+logout() {
+
+  this.personaService.logout();
+}
+
 }

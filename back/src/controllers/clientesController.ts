@@ -204,9 +204,6 @@ public async listarClientesPlan(req: Request, res: Response): Promise<void> {
 // ==================================================
 public async buscarApellidoNombres(req: Request, res: Response): Promise<any> {
 
-    
-    console.log("req.params : ",req.params);
-
     var Apellidos = req.params.pApellidos || '';
     var Nombres = req.params.pNombres || '';
 
