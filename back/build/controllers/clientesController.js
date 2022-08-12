@@ -208,9 +208,9 @@ class PersonasController {
             const pPatente = req.params.pPatente;
             database_1.default.query(`call bsp_buscar_cliente_patente('${pPatente}')`, function (err, result, fields) {
                 if (err) {
-                    console.log("error : ", err);
                     res.status(404).json({ text: "La personas no existe" });
                 }
+                console.log("result : ", result);
                 return res.json(result);
             });
         });

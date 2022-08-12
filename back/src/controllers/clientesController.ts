@@ -218,7 +218,7 @@ public async buscarApellidoNombres(req: Request, res: Response): Promise<any> {
             
             res.status(404).json({ text: "La personas no existe" });
         }
-        console.log("result : ", result);
+        
         return res.json(result);
     })
 }
@@ -232,13 +232,14 @@ public async buscarPatente(req: Request, res: Response): Promise<any> {
     
     pool.query(`call bsp_buscar_cliente_patente('${pPatente}')`, function(err: any, result: any, fields: any){
         if(err){
-            console.log("error : ", err);
-            res.status(404).json({ text: "La personas no existe" });
+            
+            res.status(404).json({ text: "Patente inexiste" });
         }
         
         return res.json(result);
     })
 }
+
 }
 
 
