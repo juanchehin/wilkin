@@ -10,9 +10,6 @@ import { CommonModule } from '@angular/common';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ClienteComponent } from './clientes/cliente.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
-// import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from '../shared/header/header.component';
-import { FooterComponent } from '../shared/footer/footer.component';
 
 
 
@@ -22,7 +19,6 @@ import { FooterComponent } from '../shared/footer/footer.component';
         ClientesComponent,
         ClienteComponent,
         EditarclienteComponent,
-        // LoginComponent,
       ],
     exports: [
         PagesComponent
