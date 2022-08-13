@@ -110,6 +110,29 @@ public async listarClientes(req: Request, res: Response): Promise<void> {
     })
  }
 
+ // ==================================================
+//        Lista 
+// ==================================================
+
+public async historicoCliente(req: Request, res: Response): Promise<void> {
+
+    var desde = req.params.pDesde || 0;
+    desde  = Number(desde);
+
+    var IdCliente = req.params.pIdCliente;
+
+    console.log("req.params es : ",req.params);
+
+    pool.query(`call bsp_historico_cliente('${IdCliente}','${desde}')`, function(err: any, result: any){
+       if(err){
+        
+           return;
+       }
+       console.log("result es : ",result);
+
+       res.json(result);
+   })
+}
 // ==================================================
 //   Elimina un cliente de la BD
 // ==================================================

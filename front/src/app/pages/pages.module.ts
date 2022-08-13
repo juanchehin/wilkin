@@ -11,6 +11,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ClienteComponent } from './clientes/cliente.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
 import { DashboardComponent } from './principal/dashboard.component';
+import { HistoricoComponent } from './historico/historico.component';
 
 
 
@@ -20,7 +21,8 @@ import { DashboardComponent } from './principal/dashboard.component';
         ClientesComponent,
         ClienteComponent,
         EditarclienteComponent,
-        DashboardComponent
+        DashboardComponent,
+        HistoricoComponent
       ],
     exports: [
         PagesComponent

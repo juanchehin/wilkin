@@ -1,47 +1,62 @@
 <div class="container">
-    <h4 class="card-title">Historico de {{ Nombres }} {{ Apellidos }} - Patente {{ Patente }}</h4>
-    <div class="col-lg-12 well">
+    <h2 class="card-title">Historico de {{ Nombres }} {{ Apellidos }} - Patente {{ Patente }}</h2>
 
-        <div class="row">
-
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Kilometros</th>
-                                    <th>Aceite</th>
-                                    <th>Filtro</th>
-                                    <th>Correa</th>
-                                    <th>TensorDist</th>
-                                    <th>PastillaFreno</th>
-                                    <th>CambioRef</th>
-                                    <th>CambioBujia</th>
-                                    <th>CambioAceite</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr *ngFor="let historico of historicos">
-
-                                    <td>{{ historico.Fecha }}</td>
-                                    <td>{{ historico.Kilometros }}</td>
-                                    <td>{{ historico.Aceite }}</td>
-                                    <td>{{ historico.Filtro }}</td>
-                                    <td>{{ historico.Correa }}</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
+    <div>
+        <h4 class="card-title">Cantidad ( <small> {{ totalHistorico }} </small> )</h4>
     </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Kilometros</th>
+                <th>Aceite</th>
+                <th>Filtro</th>
+                <th></th>
+                <!-- <th>Correa</th>
+                <th>TensorDist</th>
+                <th>PastillaFreno</th>
+                <th>CambioRef</th>
+                <th>CambioBujia</th>
+                <th>CambioAceite</th>
+
+                <th>CambioFiltroAceite:</th>
+                <th>CambioFiltroAgua</th>
+                <th>CambioComb</th>
+                <th>CambioAA</th> -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let historico of historicos">
+
+                <td>{{ historico.Fecha | date:"dd/MM/yyyy"}}</td>
+                <td>{{ historico.Kilometros }}</td>
+                <td>{{ historico.Aceite }}</td>
+                <td>{{ historico.Filtro }}</td>
+                <td>
+                    <button title="Ver mas" [routerLink]="[ '/cliente/historico/', IdCliente ] " class="btn btn-success">
+                    <i class="material-icons ">
+                      chevron_right
+                        </i>
+                </button>
+                </td>
+                <!-- <td>{{ historico.Correa }}</td>
+
+                <td>{{ historico.TensorDist }}</td>
+                <td>{{ historico.PastillaFreno }}</td>
+                <td>{{ historico.CambioRef }}</td>
+                <td>{{ historico.CambioBujia }}</td>
+                <td>{{ historico.CambioAceite }}</td>
+
+                <td>{{ historico.CambioFiltroAceite }}</td>
+                <td>{{ historico.CambioFiltroAgua }}</td>
+                <td>{{ historico.CambioRef }}</td>
+                <td>{{ historico.CambioComb }}</td>
+                <td>{{ historico.CambioAA }}</td> -->
+
+            </tr>
+        </tbody>
+    </table>
+
 </div>

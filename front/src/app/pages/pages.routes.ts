@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './principal/dashboard.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
+import { HistoricoComponent } from './historico/historico.component';
 
 const pagesRoutes: Routes = [
 
@@ -30,6 +31,7 @@ const pagesRoutes: Routes = [
             { path: 'clientes', component: ClientesComponent },
             { path: 'cliente', component: ClienteComponent },
             { path: 'cliente/editar/:id', component: EditarclienteComponent },
+            { path: 'cliente/historico/:id', component: HistoricoComponent },
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }

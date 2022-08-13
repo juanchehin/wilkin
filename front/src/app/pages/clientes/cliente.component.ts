@@ -64,8 +64,6 @@ export class ClienteComponent implements OnInit {
     this.forma.value.Observaciones )
               .subscribe( (resp: any) => {
 
-                console.log("resp es : ",resp)
-
                   /*  Transformar resp.mensaje a JSON para que se pueda acceder*/
                   // tslint:disable-next-line: align
                   if ( resp.Mensaje === 'Ok') {
