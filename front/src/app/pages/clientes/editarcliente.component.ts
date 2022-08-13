@@ -13,17 +13,14 @@ export class EditarclienteComponent implements OnInit {
 
   forma!: FormGroup;
   persona: any;
-  sonIguales = false;
-  banderaPass = false;
-
-  public imgTemp: any = null;
-
-  Correo!: string;
-  Password!: string;
 
   Apellidos!: string;
   Nombres!: string;
   Telefono!: string;
+  Patente!: string;
+  Correo!: string;
+  Direccion!: string;
+  Modelo!: string;
   Observaciones!: string;
 
   cargando = true;
@@ -38,12 +35,12 @@ export class EditarclienteComponent implements OnInit {
     this.forma = new FormGroup({
         Apellidos: new FormControl(null, Validators.required ),
         Nombres: new FormControl(null, Validators.required ),
-        Documento: new FormControl(null, Validators.required ),
         Telefono: new FormControl(null ),
+        Patente: new FormControl(null ),
+        Correo: new FormControl( null ),
+        Direccion: new FormControl( null ),
+        Modelo: new FormControl( null ),
         Observaciones: new FormControl(''),
-        Correo: new FormControl( null , [Validators.required , Validators.email ]),
-
-
       });
 
   }
@@ -55,22 +52,23 @@ cargarCliente() {
 
   this.date = this.activatedRoute.snapshot.paramMap.get('id');
 
-  // this.personaService.damePersona( this.date )
-  //            .subscribe( (resp: any) => {
+  this.personaService.dameCliente( this.date )
+             .subscribe( (resp: any) => {
 
-  //             console.log("resp es : ",resp)
-  //             this.persona = resp[0];
+              this.persona = resp[0];
 
-  //             this.Correo = this.persona.Correo;
-  //             this.Password =  this.persona.Password;
-  //             this.Apellidos =  this.persona.Apellidos;
-  //             this.Nombres = this.persona.Nombres;
-  //             this.Telefono =  this.persona.Telefono;
-  //             this.Observaciones = this.persona.Observaciones;
+              this.Correo = this.persona.Correo;
+              this.Apellidos =  this.persona.Apellidos;
+              this.Nombres = this.persona.Nombres;
+              this.Telefono =  this.persona.Telefono;
+              this.Patente = this.persona.Patente;
+              this.Modelo =  this.persona.Modelo;
+              this.Direccion = this.persona.Direccion;
+              this.Observaciones = this.persona.Observaciones;
 
-  //             this.cargando = false;
+              this.cargando = false;
 
-  //           });
+            });
 
 }
 
@@ -81,11 +79,16 @@ cargarCliente() {
 actualizaCliente( ) {
 
 
-  this.personaService.editarCliente( this.forma.value.Apellidos || this.Apellidos,
-     this.forma.value.Nombres || this.Nombres,
-      this.forma.value.Observaciones || this.Observaciones,
-      this.forma.value.Telefono || this.Telefono
-    ,this.forma.value.Correo || this.Correo )
+  this.personaService.editarCliente(
+    this.date,
+    this.forma.value.Apellidos || this.Apellidos,
+    this.forma.value.Nombres || this.Nombres,
+    this.forma.value.Telefono || this.Telefono,
+    this.forma.value.Patente || this.Patente,
+    this.forma.value.Correo || this.Correo ,
+    this.forma.value.Direccion || this.Direccion,
+    this.forma.value.Modelo || this.Modelo,
+    this.forma.value.Observaciones || this.Observaciones)
 
              .subscribe( (resp: any) => {
 

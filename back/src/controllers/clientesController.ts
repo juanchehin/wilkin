@@ -10,34 +10,42 @@ class PersonasController {
 
 
 // ==================================================
+//        Obtiene una personas de la BD
+// ==================================================
+public async dameCliente(req: Request, res: Response): Promise<any> {
+
+    var IdCliente = req.params.pIdCliente;
+
+    pool.query(`call bsp_dame_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
+        if(err){
+            
+            console.log("result : ",result);
+            res.status(404).json({ text: "La personas no existe" });
+        }
+        
+        return res.json(result[0]);
+    })
+
+}
+
+// ==================================================
 //        Inserta un cliente
 // ==================================================
-public async createCliente(req: Request, res: Response) {
+public async altaCliente(req: Request, res: Response) {
 
-    var IdTipoDocumento = req.body.IdTipoDocumento;
-    var Apellidos = req.body.Apellidos;
-    var Nombres = req.body.Nombres;
-    var Documento = req.body.Documento;
-    var Password = req.body.Password;
-    var Telefono = req.body.Telefono;
-    var Sexo = req.body.Sexo;
-    var Observaciones = req.body.Observaciones;
-    var FechaNac = req.body.FechaNac;
-    var Correo = req.body.Correo;
-    var Usuario = req.body.Usuario;
-    var Calle = req.body.Calle;
-    var Piso = req.body.Piso;
-    var Departamento = req.body.Departamento;
-    var Ciudad = req.body.Ciudad;
-    var Pais = req.body.Pais;
-    var Numero = req.body.Numero;    // 19
-    var Objetivo = req.body.Objetivo;
-    var Ocupacion = req.body.Ocupacion;
-    var Horario = req.body.Horario;
+    var Apellidos = req.body[0];
+    var Nombres = req.body[1];
+    var Telefono = req.body[2];
+    var Patente = req.body[3];
+    var Correo = req.body[4];
+    var Direccion = req.body[5];
+    var Modelo = req.body[6];
+    var Observaciones = req.body[7];
 
-    pool.query(`call bsp_alta_cliente('${IdTipoDocumento}','${Apellidos}','${Nombres}','${Documento}','${Password}','${Telefono}','${Sexo}','${Observaciones}','${FechaNac}','${Correo}','${Usuario}','${Calle}',${Piso},'${Departamento}','${Ciudad}','${Pais}',${Numero},'${Objetivo}','${Ocupacion}','${Horario}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_alta_cliente('${Apellidos}','${Nombres}','${Telefono}','${Patente}','${Correo}',
+    '${Direccion}','${Modelo}','${Observaciones}')`, function(err: any, result: any){
+
         if(err){
-            console.log("error : ", err);
             res.status(404).json({ text: "Ocurrio un problema" });
             return;
         }
@@ -107,9 +115,9 @@ public async listarClientes(req: Request, res: Response): Promise<void> {
 // ==================================================
 
 public async eliminarCliente(req: Request, res: Response) {
-    var IdPersona = req.params.IdPersona;
+    var IdCliente = req.params.IdCliente;
 
-    pool.query(`call bsp_eliminar_cliente('${IdPersona}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_eliminar_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
         if(err){
             console.log("error", err);
             return;
@@ -134,34 +142,26 @@ public async eliminarCliente(req: Request, res: Response) {
 
 public async actualizaCliente(req: Request, res: Response) {
 
-    var IdPersona = req.body.IdPersona;
-    var IdTipoDocumento = req.body.IdTipoDocumento;
+    console.log("pasa actualizaCliente  req.body : ", req.body);
+    console.log("pasa actualizaCliente : req.params ", req.params);
+
+    var IdCliente = req.params.IdCliente;
     var Apellidos = req.body.Apellidos;
     var Nombres = req.body.Nombres;
-    var Documento = req.body.Documento;
-    var Password = req.body.Password;
     var Telefono = req.body.Telefono;
-    var Sexo = req.body.Sexo;
-    var Observaciones = req.body.Observaciones;
-    var FechaNac = req.body.FechaNac;
+    var Patente = req.body.Patente;
     var Correo = req.body.Correo;
-    var Usuario = req.body.Usuario;
-    var Calle = req.body.Calle;
-    var Piso = req.body.Piso;
-    var Departamento = req.body.Departamento;
-    var Ciudad = req.body.Ciudad;
-    var Pais = req.body.Pais;
-    var Numero = req.body.Numero;    // 20
-    var Objetivo = req.body.Objetivo;
-    var Ocupacion = req.body.Ocupacion;
-    var Horario = req.body.Horario;
+    var Direccion = req.body.Direccion;
+    var Modelo = req.body.Modelo;
+    var Observaciones = req.body.Observaciones;
 
-    pool.query(`call bsp_editar_cliente('${IdPersona}','${IdTipoDocumento}','${Apellidos}','${Nombres}',
-    '${Documento}','${Password}','${Telefono}','${Sexo}','${Observaciones}','${FechaNac}',
-    '${Correo}','${Usuario}','${Calle}',${Piso},'${Departamento}','${Ciudad}','${Pais}',${Numero},
-    '${Objetivo}','${Ocupacion}','${Horario}')`, function(err: any, result: any, fields: any){
+    console.log("pasa actualizaCliente : req.params ", IdCliente);
+
+    pool.query(`call bsp_editar_cliente('${IdCliente}','${Apellidos}','${Nombres}','${Telefono}','${Patente}','${Correo}',
+    '${Direccion}','${Modelo}','${Observaciones}')`, function(err: any, result: any){
+
         if(err){
-            console.log("error : ", err);
+            
             res.status(404).json({ text: "Ocurrio un problema" });
             return;
         }

@@ -23,8 +23,9 @@
         <nav class="navbar navbar-expand-lg  bg-dark">
             <div class="container-fluid">
 
-                <img data-src="../../../assets/images/logo.jpg" src="../../../assets/images/logo.jpg" width="280" height="80">
-
+                <a [routerLink]="[ '/principal'] ">
+                    <img data-src="../../../assets/images/logo.jpg" src="../../../assets/images/logo.jpg" width="280" height="80">
+                </a>
 
                 <div class="text-right " *ngIf="!comprobarLogueo()">
                     <a (click)="logout()">

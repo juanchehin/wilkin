@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PersonaService } from '../../services/service.index';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 // const Swal = require('sweetalert2');
-declare var Swal: any;
+// declare var Swal: any;
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,8 +33,11 @@ export class ClienteComponent implements OnInit {
       Apellidos: new FormControl(null, Validators.required ),
       Nombres: new FormControl(null, Validators.required ),
       Telefono: new FormControl(null ),
+      Patente: new FormControl(null ),
+      Correo: new FormControl( null , Validators.email ),
+      Direccion: new FormControl( null ),
+      Modelo: new FormControl( null ),
       Observaciones: new FormControl(''),
-      Correo: new FormControl( null , [Validators.required , Validators.email ]),
     })
 
   }
@@ -50,11 +53,18 @@ export class ClienteComponent implements OnInit {
       return;
     }
 
-    this.personaService.crearCliente(this.forma.value.Apellidos,
-      this.forma.value.Nombres,
-      this.forma.value.Telefono,this.forma.value.Correo,
-      this.forma.value.Observaciones )
+    this.personaService.crearCliente(
+    this.forma.value.Apellidos,
+    this.forma.value.Nombres,
+    this.forma.value.Telefono ,
+    this.forma.value.Patente ,
+    this.forma.value.Correo  ,
+    this.forma.value.Direccion ,
+    this.forma.value.Modelo ,
+    this.forma.value.Observaciones )
               .subscribe( (resp: any) => {
+
+                console.log("resp es : ",resp)
 
                   /*  Transformar resp.mensaje a JSON para que se pueda acceder*/
                   // tslint:disable-next-line: align

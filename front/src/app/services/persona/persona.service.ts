@@ -177,17 +177,20 @@ dameCliente( IdCliente: string  ): any {
 // ==================================================
 //        Crear cliente
 // ==================================================
-crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : string,Observaciones: string ) {
+crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Patente : string,Correo: string , Direccion : string, Modelo: string,Observaciones: string ) {
 
   var cliente = [
     Apellidos,
     Nombres,
     Telefono,
+    Patente,
     Correo,
+    Direccion,
+    Modelo,
     Observaciones
   ]
 
-  let url = URL_SERVICIOS + '/personas/cliente';
+  let url = URL_SERVICIOS + '/personas/clientes/alta';
 
   return this.http.post(
     url,
@@ -204,13 +207,13 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Correo : s
 //        Elimina un cliente
 // ==================================================
 
-eliminarCliente( IdPersona: any ) {
+eliminarCliente( IdCliente: any ) {
 
-  let url = URL_SERVICIOS + '/personas/cliente/eliminar/' + IdPersona;
+  let url = URL_SERVICIOS + '/personas/cliente/eliminar/' + IdCliente;
 
   return this.http.put(
     url,
-    IdPersona,
+    IdCliente,
     {
       headers: {
         token: this.token
@@ -224,23 +227,29 @@ eliminarCliente( IdPersona: any ) {
 //        Editar Cliente
 // ==================================================
 
-editarCliente( Apellidos : string,
+editarCliente(
+    IdCliente : string,
+    Apellidos : string,
     Nombres : string,
-    Observaciones : string,
     Telefono : string,
-    Correo : string
+    Patente : string,
+    Correo : string,
+    Direccion : string,
+    Modelo : string,
+    Observaciones : string
  ) {
 
-  const id = 1;
-
-  let url = URL_SERVICIOS + '/cliente/actualizar/' + id;
+  let url = URL_SERVICIOS + '/personas/clientes/actualizar/' + IdCliente;
 
   var cliente = {
     Apellidos,
     Nombres,
-    Observaciones,
     Telefono,
-    Correo
+    Patente,
+    Correo,
+    Direccion,
+    Modelo,
+    Observaciones
   }
 
 
@@ -260,8 +269,6 @@ editarCliente( Apellidos : string,
 // ==================================================
 
 buscarPatente( termino: string ) {
-
-  console.log("Entra buscar patente",termino)
 
   const url = URL_SERVICIOS + '/personas/clientes/patente/' + termino;
 
