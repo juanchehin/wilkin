@@ -12,6 +12,7 @@ import { ClienteComponent } from './clientes/cliente.component';
 import { EditarclienteComponent } from './clientes/editarcliente.component';
 import { DashboardComponent } from './principal/dashboard.component';
 import { HistoricoComponent } from './historico/historico.component';
+import { DetalleHistoricoComponent } from './historico/detalle-historico.component';
 
 
 
@@ -22,7 +23,8 @@ import { HistoricoComponent } from './historico/historico.component';
         ClienteComponent,
         EditarclienteComponent,
         DashboardComponent,
-        HistoricoComponent
+        HistoricoComponent,
+        DetalleHistoricoComponent
       ],
     exports: [
         PagesComponent

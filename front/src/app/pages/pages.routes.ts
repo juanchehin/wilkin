@@ -10,6 +10,7 @@ import { DashboardComponent } from './principal/dashboard.component';
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 import { HistoricoComponent } from './historico/historico.component';
+import { DetalleHistoricoComponent } from './historico/detalle-historico.component';
 
 const pagesRoutes: Routes = [
 
@@ -32,6 +33,7 @@ const pagesRoutes: Routes = [
             { path: 'cliente', component: ClienteComponent },
             { path: 'cliente/editar/:id', component: EditarclienteComponent },
             { path: 'cliente/historico/:id', component: HistoricoComponent },
+            { path: 'cliente/historico/detalle/:id', component: DetalleHistoricoComponent },
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }
