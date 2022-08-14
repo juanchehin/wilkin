@@ -15,6 +15,7 @@ class FiltrosRoutes {
     config(): void {
         // Clientes
         this.router.get('/listar/:desde',filtrosController.listarFiltrosPaginado);
+        this.router.get('/buscar/:pFiltro',filtrosController.buscarFiltro);
         // this.router.get('/clientes/busqueda/:pApellidos/:pNombres',personasController.buscarApellidoNombres);
         // this.router.get('/clientes/patente/:pPatente',personasController.buscarPatente);      
         // this.router.get('/clientes/dame/:pIdCliente',personasController.dameCliente);  

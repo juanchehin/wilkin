@@ -64,7 +64,7 @@ public async listarFiltrosPaginado(req: Request, res: Response): Promise<void> {
      var desde = req.params.desde || 0;
      desde  = Number(desde);
 
-     pool.query(`call bsp_filtros_paginado('${desde}')`, function(err: any, result: any, fields: any){
+     pool.query(`call bsp_listar_filtros_paginado('${desde}')`, function(err: any, result: any, fields: any){
         if(err){
             console.log("error", err);
             return;

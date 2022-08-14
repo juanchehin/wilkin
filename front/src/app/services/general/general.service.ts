@@ -435,6 +435,8 @@ buscarFiltro( termino: string ) {
 
   const url = URL_SERVICIOS + '/filtros/buscar/' + termino;
 
+  console.log("buscarFiltro : termino : ",termino)
+
   return this.http.get(
     url, {
       headers: {

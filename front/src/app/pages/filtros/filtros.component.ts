@@ -54,9 +54,8 @@ export class FiltrosComponent implements OnInit {
 
 buscarFiltro( ) {
 
-  const inputElement: HTMLInputElement = document.getElementById('buscarFiltro') as HTMLInputElement;
+  const inputElement: HTMLInputElement = document.getElementById('buscarFiltros') as HTMLInputElement;
   const filtro: any = inputElement.value || null;
-
 
   this.generalService.buscarFiltro( filtro  )
           .subscribe( (resp: any) => {
