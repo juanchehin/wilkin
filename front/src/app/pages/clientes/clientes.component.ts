@@ -121,7 +121,7 @@ buscarCliente( ) {
 
       if (borrar) {
 
-        const parametro = cliente.IdPersona.toString();
+        const parametro = cliente.IdCliente.toString();
 
         this.GeneralService.eliminarCliente( parametro )
                   .subscribe( (resp: any) => {

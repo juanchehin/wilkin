@@ -21,6 +21,7 @@ class PersonasRoutes {
         this.router.get('/clientes/historico/:pIdCliente/:pDesde',personasController.historicoCliente);  
         this.router.put('/clientes/actualizar/:IdCliente', personasController.actualizaCliente);
         this.router.post('/clientes/alta' , personasController.altaCliente);
+        this.router.put('/clientes/baja/:pIdCliente' , personasController.bajaCliente);
 
     }
 

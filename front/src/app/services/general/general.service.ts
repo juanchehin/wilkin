@@ -226,7 +226,7 @@ crearCliente( Apellidos : string, Nombres: string, Telefono: string  ,Patente : 
 
 eliminarCliente( IdCliente: any ) {
 
-  let url = URL_SERVICIOS + '/personas/cliente/eliminar/' + IdCliente;
+  let url = URL_SERVICIOS + '/personas/clientes/baja/' + IdCliente;
 
   return this.http.put(
     url,

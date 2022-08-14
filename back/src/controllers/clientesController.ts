@@ -134,16 +134,16 @@ public async historicoCliente(req: Request, res: Response): Promise<void> {
 //   Elimina un cliente de la BD
 // ==================================================
 
-public async eliminarCliente(req: Request, res: Response) {
-    var IdCliente = req.params.IdCliente;
+public async bajaCliente(req: Request, res: Response) {
+    var IdCliente = req.params.pIdCliente;
 
-    pool.query(`call bsp_eliminar_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_baja_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
         if(err){
             console.log("error", err);
             return;
         }
 
-        if(result[0][0].Mensaje !== 'Ok'){
+        if(result[1][0].Mensaje !== 'Ok'){
             return res.json({
                 ok: false,
                 mensaje: result.Mensaje
