@@ -13,15 +13,19 @@ class FiltrosRoutes {
     }
 
     config(): void {
-        // Clientes
+
         this.router.get('/listar/:desde',filtrosController.listarFiltrosPaginado);
         this.router.get('/buscar/:pFiltro',filtrosController.buscarFiltro);
+        this.router.post('/alta' , filtrosController.altaFiltro);
+        this.router.put('/eliminar/:pIdFiltro' , filtrosController.eliminarFiltro);
+        this.router.get('/dame/:pIdFiltro',filtrosController.dameFiltro);  
+        this.router.put('/actualizar/:pIdFiltro', filtrosController.actualizaFiltro);
+
         // this.router.get('/clientes/busqueda/:pApellidos/:pNombres',personasController.buscarApellidoNombres);
         // this.router.get('/clientes/patente/:pPatente',personasController.buscarPatente);      
         // this.router.get('/clientes/dame/:pIdCliente',personasController.dameCliente);  
         // this.router.get('/clientes/historico/:pIdCliente/:pDesde',personasController.historicoCliente);  
         // this.router.put('/clientes/actualizar/:IdCliente', personasController.actualizaCliente);
-        // this.router.post('/clientes/alta' , personasController.altaCliente);
 
     }
 

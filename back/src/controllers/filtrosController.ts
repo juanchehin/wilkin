@@ -8,13 +8,20 @@ class FiltrosController {
 // ==================================================
 public async dameFiltro(req: Request, res: Response): Promise<any> {
 
-    var IdFiltro = req.params.IdFiltro;
+    var IdFiltro = req.params.pIdFiltro;
 
-    pool.query(`call bsp_dame_filtro('${IdFiltro}')`, function(err: any, result: any, fields: any){
+    
+    console.log("IdFiltro : ",IdFiltro);
+    
+    console.log("req.params : ",req.params);
+
+    pool.query(`call bsp_dame_filtro('${IdFiltro}')`, function(err: any, result: any){
+
+        console.log("result : ",result);
+
         if(err){
             
-            console.log("result : ",result);
-            res.status(404).json({ text: "La personas no existe" });
+            res.status(404).json({ text: "El filtro no existe" });
         }
         
         return res.json(result[0]);
@@ -27,8 +34,8 @@ public async dameFiltro(req: Request, res: Response): Promise<any> {
 // ==================================================
 public async altaFiltro(req: Request, res: Response) {
 
-    var Filtro = req.body[0];
-    var Descripcion = req.body[1];
+    var Filtro = req.body.pFiltro;
+    var Descripcion = req.body.pDescripcion;
 
     pool.query(`call bsp_alta_filtro('${Filtro}','${Descripcion}')`, function(err: any, result: any){
 
@@ -78,15 +85,16 @@ public async listarFiltrosPaginado(req: Request, res: Response): Promise<void> {
 // ==================================================
 
 public async eliminarFiltro(req: Request, res: Response) {
-    var IdFiltro = req.params.IdFiltro;
+    var IdFiltro = req.params.pIdFiltro;
 
-    pool.query(`call bsp_eliminar_cliente('${IdFiltro}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_baja_filtro('${IdFiltro}')`, function(err: any, result: any, fields: any){
+
         if(err){
             console.log("error", err);
             return;
         }
 
-        if(result[0][0].Mensaje !== 'Ok'){
+        if(result[1][0].Mensaje !== 'Ok'){
             return res.json({
                 ok: false,
                 mensaje: result.Mensaje
@@ -105,14 +113,9 @@ public async eliminarFiltro(req: Request, res: Response) {
 
 public async actualizaFiltro(req: Request, res: Response) {
 
-    console.log("pasa actualizaCliente  req.body : ", req.body);
-    console.log("pasa actualizaCliente : req.params ", req.params);
-
-    var IdFiltro = req.params.IdFiltro;
+    var IdFiltro = req.params.pIdFiltro;
     var Filtro = req.body.Filtro;
     var Descripcion = req.body.Descripcion;
-
-    console.log("pasa actualizaIdFiltro : req.params ", IdFiltro);
 
     pool.query(`call bsp_editar_filtro('${IdFiltro}','${Filtro}','${Descripcion}')`, function(err: any, result: any){
 

@@ -363,9 +363,14 @@ dameFiltro( IdFiltro: string  ): any {
 // ==================================================
 //        Crear
 // ==================================================
-crearFiltro( Filtro : string ) {
+crearFiltro( pFiltro : string, Descripcion: string) {
 
   let url = URL_SERVICIOS + '/filtros/alta';
+
+  var Filtro = {
+    pFiltro,
+    Descripcion
+  }
 
   return this.http.post(
     url,
@@ -384,7 +389,7 @@ crearFiltro( Filtro : string ) {
 
 eliminarFiltro( IdFiltro: any ) {
 
-  let url = URL_SERVICIOS + '/fltros/eliminar/' + IdFiltro;
+  let url = URL_SERVICIOS + '/filtros/eliminar/' + IdFiltro;
 
   return this.http.put(
     url,

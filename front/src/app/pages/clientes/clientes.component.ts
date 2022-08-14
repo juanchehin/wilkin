@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-declare var Swal: any;
+
 import { GeneralService } from '../../services/general/general.service';
 
-// const Swal = require('sweetalert2');
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',

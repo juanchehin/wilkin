@@ -14,6 +14,8 @@ import { DetalleHistoricoComponent } from './historico/detalle-historico.compone
 import { TrabajoComponent } from './trabajos/trabajo.component';
 // Filtros
 import { FiltrosComponent } from './filtros/filtros.component';
+import { FiltroComponent } from './filtros/filtro.component';
+import { EditarfiltroComponent } from './filtros/editarfiltro.component';
 
 const pagesRoutes: Routes = [
 
@@ -40,8 +42,8 @@ const pagesRoutes: Routes = [
             { path: 'cliente/trabajo/:id', component: TrabajoComponent },
             // Filtros
             { path: 'filtros', component: FiltrosComponent },
-            // { path: 'filtro', component: FiltroComponent },
-            // { path: 'filtro/editar/:id', component: EditarfiltroComponent }
+            { path: 'filtro', component: FiltroComponent },
+            { path: 'filtro/editar/:id', component: EditarfiltroComponent },
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }

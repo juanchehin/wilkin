@@ -15,6 +15,8 @@ import { HistoricoComponent } from './historico/historico.component';
 import { DetalleHistoricoComponent } from './historico/detalle-historico.component';
 import { TrabajoComponent } from './trabajos/trabajo.component';
 import { FiltrosComponent } from './filtros/filtros.component';
+import { FiltroComponent } from './filtros/filtro.component';
+import { EditarfiltroComponent } from './filtros/editarfiltro.component';
 
 
 
@@ -28,7 +30,9 @@ import { FiltrosComponent } from './filtros/filtros.component';
         HistoricoComponent,
         DetalleHistoricoComponent,
         TrabajoComponent,
-        FiltrosComponent
+        FiltrosComponent,
+        FiltroComponent,
+        EditarfiltroComponent
       ],
     exports: [
         PagesComponent
