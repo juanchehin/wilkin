@@ -4,6 +4,7 @@ import indexRoutes from './routes/indexRoutes';
 import personasRoutes from './routes/personasRoutes';
 import loginRoutes from './routes/loginRoutes';
 import filtrosRoutes from './routes/filtrosRoutes';
+import aceitesRoutes from './routes/aceitesRoutes';
 
 
 
@@ -62,6 +63,7 @@ class Server {
 
         // this.app.use('/', cors(configuracionCORS),indexRoutes);
         this.app.use('/api/personas', personasRoutes);
+        this.app.use('/api/aceites', aceitesRoutes);
         this.app.use('/api/filtros', filtrosRoutes);
         this.app.use('/api/login', loginRoutes)
 

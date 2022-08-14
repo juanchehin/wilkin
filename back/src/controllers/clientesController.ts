@@ -260,6 +260,55 @@ public async buscarPatente(req: Request, res: Response): Promise<any> {
     })
 }
 
+
+// ==================================================
+//        Inserta un trabajo
+// ==================================================
+public async altaTrabajo(req: Request, res: Response) {
+
+    const IdCliente = req.params.pIdCliente;
+
+    var Kilometros = req.body[0];
+    var Aceite = req.body[1];
+    var Filtro = req.body[2];
+    var Correa = req.body[3] === "Si" ? "S" : "N";
+    var TensorDist = req.body[4] === "Si" ? "S" : "N";;
+    var PastillaFreno = req.body[5] === "Si" ? "S" : "N";;
+    var CambioRef = req.body[6] === "Si" ? "S" : "N";;
+    var CambioBujia = req.body[7] === "Si" ? "S" : "N";;
+    var CambioComb = req.body[8] === "Si" ? "S" : "N";;
+    var CambioFiltroAceite = req.body[9] === "Si" ? "S" : "N";;
+    var CambioFiltroAgua = req.body[10] === "Si" ? "S" : "N";
+    var CorreaDist = req.body[11] === "Si" ? "S" : "N";
+    var BombaAgua = req.body[12] === "Si" ? "S" : "N";
+    var CambioAA = req.body[13] === "Si" ? "S" : "N";
+    var CambioAceite = req.body[14] === "Si" ? "S" : "N";
+    var Observaciones = req.body[15];
+
+    pool.query(`call bsp_alta_trabajo('${IdCliente}','${Kilometros}','${Aceite}','${Filtro}','${Correa}',
+    '${TensorDist}','${PastillaFreno}','${CambioRef}','${CambioBujia}','${CambioComb}','${CambioFiltroAceite}',
+    '${CambioFiltroAgua}','${CorreaDist}'
+    ,'${BombaAgua}','${CambioAA}','${CambioAceite}','${Observaciones}')`, function(err: any, result: any){
+
+
+        if(err){
+            res.status(404).json({ text: "Ocurrio un problema" });
+            return;
+        }
+            
+        if(result[0][0].Mensaje !== 'Ok'){
+            return res.json({
+                ok: false,
+                Mensaje: result[0][0].Mensaje
+            });
+        }
+
+        return res.json({ Mensaje: 'Ok' });
+    })
+
+}
+
+
 }
 
 

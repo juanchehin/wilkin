@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-declare var Swal: any;
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { GeneralService } from 'src/app/services/general/general.service';
+
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-trabajo',
@@ -14,6 +16,7 @@ export class TrabajoComponent implements OnInit {
   forma!: FormGroup;
   persona: any;
   filtros: any;
+  aceites: any;
   fechaHoy = new Date();
 
   Apellidos: any;
@@ -47,28 +50,29 @@ export class TrabajoComponent implements OnInit {
     private router: Router) {
     this.cargarCliente();
     this.cargarFiltros();
+    this.cargarAceites();
   }
 
   ngOnInit() {
 
     this.forma = new FormGroup({
-      Kilometros: new FormControl(null ),
+      Kilometros: new FormControl(null, Validators.required ),
       Aceite: new FormControl(null, Validators.required ),
       Filtro: new FormControl(null, Validators.required ),
-      CorreaDist: new FormControl(null ),
-      Correa: new FormControl(null ),
-      TensorDist: new FormControl( null ),
-      BombaAgua: new FormControl( null ),
-      PastillaFreno: new FormControl( null ),
-      CambioRef: new FormControl(''),
+      CorreaDist: new FormControl(null , Validators.required),
+      Correa: new FormControl(null , Validators.required),
+      TensorDist: new FormControl( null , Validators.required),
+      BombaAgua: new FormControl( null, Validators.required ),
+      PastillaFreno: new FormControl( null , Validators.required),
+      CambioRef: new FormControl(null, Validators.required),
 
-      CambioBujia: new FormControl(null ),
-      CambioAceite: new FormControl(null ),
-      CambioFiltroAceite: new FormControl( null ),
-      CambioFiltroAgua: new FormControl( null ),
-      CambioComb: new FormControl( null ),
-      CambioAA: new FormControl(''),
-
+      CambioBujia: new FormControl(null, Validators.required ),
+      // CambioAceite: new FormControl(null , Validators.required),
+      CambioFiltroAceite: new FormControl( null , Validators.required),
+      CambioFiltroAgua: new FormControl( null , Validators.required),
+      CambioComb: new FormControl( null , Validators.required),
+      CambioAA: new FormControl(null, Validators.required),
+      Observaciones: new FormControl(''),
       });
 
   }
@@ -113,25 +117,56 @@ cargarFiltros() {
 }
 
 // ==================================================
+//  Carga
+// ==================================================
+
+cargarAceites() {
+
+  this.generalService.dameTodosAceites( )
+             .subscribe( (resp: any) => {
+
+              this.aceites = resp[0];
+
+              this.cargando = false;
+
+            });
+
+}
+
+// ==================================================
 //        Nuevo cliente
 // ==================================================
 
 altaTrabajo() {
 
+  console.log("altaTrabajo : ",this.forma)
+
   if ( this.forma.invalid ) {
     return;
   }
 
-  this.generalService.crearCliente(
-  this.forma.value.Apellidos,
-  this.forma.value.Nombres,
-  this.forma.value.Telefono ,
-  this.forma.value.Patente ,
-  this.forma.value.Correo  ,
-  this.forma.value.Direccion ,
-  this.forma.value.Modelo ,
-  this.forma.value.Observaciones )
+  this.generalService.altaTrabajo(
+  this.date,
+  this.forma.value.Kilometros,
+  this.forma.value.Aceite,
+  this.forma.value.Filtro ,
+  this.forma.value.Correa ,
+  this.forma.value.TensorDist  ,
+  this.forma.value.PastillaFreno ,
+  this.forma.value.CambioRef ,
+  this.forma.value.CambioBujia,
+  this.forma.value.CambioComb,
+  this.forma.value.CambioFiltroAceite,
+  this.forma.value.CambioFiltroAgua,
+  this.forma.value.CorreaDist,
+  this.forma.value.BombaAgua,
+  this.forma.value.CambioAA,
+  this.forma.value.CambioAceite,
+  this.forma.value.Observaciones
+   )
             .subscribe( (resp: any) => {
+
+              console.log("resp en trabajo es : ",resp)
 
                 /*  Transformar resp.mensaje a JSON para que se pueda acceder*/
                 // tslint:disable-next-line: align
@@ -139,30 +174,12 @@ altaTrabajo() {
                   Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Cliente cargado',
+                    title: 'Trabajo cargado',
                     showConfirmButton: false,
                     timer: 2000
                   });
                   this.router.navigate(['/clientes']);
-                } else {
-                  if (resp.Mensaje === 'La persona ya se encuentra cargada') {
-                      Swal.fire({
-                        title: 'Persona ya cargada',
-                        text: '¿Desea Reactivarlo?',
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si, activar'
-                      })
-                      .then( (activar: any) => {
-                        // this.parametro = resp.pIdPersona;
-                        // if (activar) {
-                        //   this.activarCliente(this.parametro);
-                        //   return;
-                        // }
-                      });
-                    } else {
+                  } else {
                       Swal.fire({
                         icon: 'error',
                         title: 'Hubo un problema al cargar',
@@ -172,7 +189,7 @@ altaTrabajo() {
                   return;
                   // tslint:disable-next-line: align
                   }
-                });
+                );
   return;
 }
 }

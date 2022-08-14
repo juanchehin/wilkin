@@ -312,7 +312,7 @@ buscarCliente( Apellidos: string , Nombres: string  ): any {
 }
 
 // ====================================================================================================================
-// =========================================== Filtros ===================================================================
+// =========================================== Filtros/Aceites ===================================================================
 // ====================================================================================================================
 // ==================================================
 //        Cargar Filtros - Peticion GET al server
@@ -450,5 +450,69 @@ buscarFiltro( termino: string ) {
     }
   )
 }
+
+
+// ==================================================
+//        Cargar Filtros - Peticion GET al server
+// ==================================================
+dameTodosAceites( ) {
+
+  let url = URL_SERVICIOS + '/aceites/listar/';  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//  /********      Trabajos  *******************
+// ==================================================
+
+
+
+// ==================================================
+//        Crear trabajo
+// ==================================================
+altaTrabajo( IdCliente: string,Kilometros : string, Aceite: string, Filtro: string  ,Correa : string,TensorDist: string , PastillaFreno : string, CambioRef: string,CambioBujia: string
+  ,CambioComb : string, CambioFiltroAceite: string,CambioFiltroAgua: string,CorreaDist: string,BombaAgua : string,CambioAA : string,CambioAceite : string,Observaciones: string ) {
+
+  var trabajo = [
+  Kilometros,
+  Aceite,
+  Filtro ,
+  Correa ,
+  TensorDist  ,
+  PastillaFreno ,
+  CambioRef ,
+  CambioBujia,
+  CambioComb,
+  CambioFiltroAceite,
+  CambioFiltroAgua,
+  CorreaDist,
+  BombaAgua,
+  CambioAA,
+  CambioAceite,
+  Observaciones
+  ]
+
+  let url = URL_SERVICIOS + '/personas/trabajos/alta/' + IdCliente;
+
+  return this.http.post(
+    url,
+    trabajo,
+    {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
 
 }

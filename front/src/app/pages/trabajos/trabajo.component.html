@@ -16,20 +16,16 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Cambio Aceite : </label>
-                            <select (ngModel)="Aceite">
-                          <option value="No">
-                            No
-                          </option>
-                          <option value="Si">
-                            Si
-                          </option>
-                      </select>
+                            <select (ngModel)="Aceite" formControlName="Aceite" name="Aceite">
+                            <option *ngFor="let aceite of aceites" [value]="aceite.Aceite"  >
+                                {{aceite.Aceite}}
+                            </option>
+                        </select>
                         </div>
                         <div class="col-sm-6 form-group">
-                            <!-- Listado de filtros -->
                             <label>Cambio Filtro : </label>
-                            <select>
-                              <option *ngFor="let filtro of filtros" [value]="filtro.Filtro">
+                            <select (ngModel)="Filtro" formControlName="Filtro" name="Filtro">
+                              <option *ngFor="let filtro of filtros" [value]="filtro.Filtro"  >
                                   {{filtro.Filtro}}
                               </option>
                           </select>
@@ -39,7 +35,7 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Cambio Correa : </label>
-                            <select (ngModel)="Correa">
+                            <select (ngModel)="Correa" formControlName="Correa" name="Correa">
                           <option value="No">
                             No
                           </option>
@@ -50,7 +46,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Cambio TensorDist : </label>
-                            <select (ngModel)="TensorDist">
+                            <select (ngModel)="TensorDist" formControlName="TensorDist" name="TensorDist">
                           <option value="No">
                             No
                           </option>
@@ -64,7 +60,7 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Cambio Pastilla Freno : </label>
-                            <select (ngModel)="PastillaFreno">
+                            <select (ngModel)="PastillaFreno" formControlName="PastillaFreno" name="PastillaFreno">
                           <option value="No">
                             No
                           </option>
@@ -75,7 +71,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Cambio Ref : </label>
-                            <select (ngModel)="CambioRef">
+                            <select (ngModel)="CambioRef" formControlName="CambioRef" name="CambioRef">
                           <option value="No">
                             No
                           </option>
@@ -89,7 +85,7 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Cambio Bujia : </label>
-                            <select (ngModel)="CambioBujia">
+                            <select (ngModel)="CambioBujia" formControlName="CambioBujia" name="CambioBujia">
                           <option value="No">
                             No
                           </option>
@@ -100,7 +96,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Cambio Comb : </label>
-                            <select (ngModel)="CambioComb">
+                            <select (ngModel)="CambioComb" formControlName="CambioComb" name="CambioComb">
                           <option value="No">
                             No
                           </option>
@@ -114,7 +110,7 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Cambio Filtro Aceite : </label>
-                            <select (ngModel)="CambioFiltroAceite">
+                            <select (ngModel)="CambioFiltroAceite" formControlName="CambioFiltroAceite" name="CambioFiltroAceite">
                           <option value="No">
                             No
                           </option>
@@ -125,7 +121,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Cambio Filtro Agua : </label>
-                            <select (ngModel)="CambioFiltroAgua">
+                            <select (ngModel)="CambioFiltroAgua" formControlName="CambioFiltroAgua" name="CambioFiltroAgua">
                           <option value="No">
                             No
                           </option>
@@ -135,12 +131,57 @@
                       </select>
                         </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label>Cambio BombaAgua : </label>
+                            <select (ngModel)="BombaAgua" formControlName="BombaAgua" name="BombaAgua">
+                    <option value="No">
+                      No
+                    </option>
+                    <option value="Si">
+                      Si
+                    </option>
+                </select>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label>CambioAA : </label>
+                            <select (ngModel)="CambioAA" formControlName="CambioAA" name="CambioAA">
+                    <option value="No">
+                      No
+                    </option>
+                    <option value="Si">
+                      Si
+                    </option>
+                </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label>Cambio CorreaDist : </label>
+                            <select (ngModel)="CorreaDist" formControlName="CorreaDist" name="CorreaDist">
+                  <option value="No">
+                    No
+                  </option>
+                  <option value="Si">
+                    Si
+                  </option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones </label>
+                        <textarea formControlName="Observaciones" name="Observaciones" placeholder="Observaciones" rows="3" class="form-control"></textarea>
+                    </div>
+
                 </div>
+
 
                 <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase">Cargar trabajo</button>
 
                 <br>
 
             </form>
-
         </div>

@@ -22,7 +22,7 @@ class PersonasRoutes {
         this.router.put('/clientes/actualizar/:IdCliente', personasController.actualizaCliente);
         this.router.post('/clientes/alta' , personasController.altaCliente);
         this.router.put('/clientes/baja/:pIdCliente' , personasController.bajaCliente);
-
+        this.router.post('/trabajos/alta/:pIdCliente' , personasController.altaTrabajo);
     }
 
 }
