@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PersonaService } from '../../services/service.index';
 import Swal from 'sweetalert2';
 // const Swal = require('sweetalert2');
 // declare var Swal: any;
 import { Router } from '@angular/router';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-cliente',
@@ -20,7 +20,7 @@ export class ClienteComponent implements OnInit {
   parametro: any;
 
   constructor(
-    public personaService: PersonaService,
+    public generalService: GeneralService,
     private router: Router
   ) {
    }
@@ -53,7 +53,7 @@ export class ClienteComponent implements OnInit {
       return;
     }
 
-    this.personaService.crearCliente(
+    this.generalService.crearCliente(
     this.forma.value.Apellidos,
     this.forma.value.Nombres,
     this.forma.value.Telefono ,
@@ -115,7 +115,7 @@ activarCliente(IdPersona: any) {
 
   const parametro = JSON.stringify(IdPersona);
 
-  this.personaService.activarCliente( parametro )
+  this.generalService.activarCliente( parametro )
             .subscribe( (resp1: any) => {
                 // this.cargarClientes();
                 if ( resp1.Mensaje === 'Ok') {

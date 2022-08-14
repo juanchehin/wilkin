@@ -10,7 +10,7 @@ const URL_SERVICIOS = environment.URL_SERVICIOS;
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaService {
+export class GeneralService {
 
   persona!: any;
   personaValor!: any;
@@ -309,6 +309,139 @@ buscarCliente( Apellidos: string , Nombres: string  ): any {
 
   return this.http.get(url);
 
+}
+
+// ====================================================================================================================
+// =========================================== Filtros ===================================================================
+// ====================================================================================================================
+// ==================================================
+//        Cargar Filtros - Peticion GET al server
+// ==================================================
+dameTodosFiltros( ) {
+
+  let url = URL_SERVICIOS + '/filtros/listar/';  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//        Cargar Filtros - Peticion GET al server
+// ==================================================
+cargarFiltrosPaginado( desde: number = 0 ) {
+
+  let url = URL_SERVICIOS + '/filtros/listar/' + desde;  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//
+// ==================================================
+
+dameFiltro( IdFiltro: string  ): any {
+
+  const url = URL_SERVICIOS + '/filtros/dame/' + IdFiltro;
+
+  return this.http.get(url);
+
+}
+
+// ==================================================
+//        Crear
+// ==================================================
+crearFiltro( Filtro : string ) {
+
+  let url = URL_SERVICIOS + '/filtros/alta';
+
+  return this.http.post(
+    url,
+    Filtro,
+    {
+      headers: {
+        token: this.token
+      }
+    }
+);
+}
+
+// ==================================================
+//        Elimina un Filtro
+// ==================================================
+
+eliminarFiltro( IdFiltro: any ) {
+
+  let url = URL_SERVICIOS + '/fltros/eliminar/' + IdFiltro;
+
+  return this.http.put(
+    url,
+    IdFiltro,
+    {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//        Editar Filtro
+// ==================================================
+
+editarFiltro(
+    IdFiltro : string,
+    Filtro : string,
+    Descripcion : string
+ ) {
+
+  let url = URL_SERVICIOS + '/filtros/actualizar/' + IdFiltro;
+
+  var filtro = {
+    Filtro,
+    Descripcion
+  }
+
+
+  return this.http.put(url ,
+    filtro,
+     {
+      headers: {
+        token: this.token
+      }
+    }
+  );
+
+}
+
+// ==================================================
+//        Busca una persona por termino
+// ==================================================
+
+buscarFiltro( termino: string ) {
+
+  const url = URL_SERVICIOS + '/filtros/buscar/' + termino;
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+  )
 }
 
 }

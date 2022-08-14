@@ -13,6 +13,8 @@ import { EditarclienteComponent } from './clientes/editarcliente.component';
 import { DashboardComponent } from './principal/dashboard.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { DetalleHistoricoComponent } from './historico/detalle-historico.component';
+import { TrabajoComponent } from './trabajos/trabajo.component';
+import { FiltrosComponent } from './filtros/filtros.component';
 
 
 
@@ -24,7 +26,9 @@ import { DetalleHistoricoComponent } from './historico/detalle-historico.compone
         EditarclienteComponent,
         DashboardComponent,
         HistoricoComponent,
-        DetalleHistoricoComponent
+        DetalleHistoricoComponent,
+        TrabajoComponent,
+        FiltrosComponent
       ],
     exports: [
         PagesComponent

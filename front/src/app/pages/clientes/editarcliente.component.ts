@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaService } from '../../services/service.index';
 declare var Swal: any;
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-editarcliente',
@@ -26,7 +26,10 @@ export class EditarclienteComponent implements OnInit {
   cargando = true;
   private date!: any;
 
-  constructor(public personaService: PersonaService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(
+    private generalService: GeneralService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     this.cargarCliente();
   }
 
@@ -52,7 +55,7 @@ cargarCliente() {
 
   this.date = this.activatedRoute.snapshot.paramMap.get('id');
 
-  this.personaService.dameCliente( this.date )
+  this.generalService.dameCliente( this.date )
              .subscribe( (resp: any) => {
 
               this.persona = resp[0];
@@ -79,7 +82,7 @@ cargarCliente() {
 actualizaCliente( ) {
 
 
-  this.personaService.editarCliente(
+  this.generalService.editarCliente(
     this.date,
     this.forma.value.Apellidos || this.Apellidos,
     this.forma.value.Nombres || this.Nombres,

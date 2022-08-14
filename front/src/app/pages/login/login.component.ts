@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { PersonaService } from '../../services/service.index';
 
 import Swal from 'sweetalert2';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +13,11 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
   constructor(
-    public personaService: PersonaService,
+    public generalService: GeneralService,
     public router: Router
     ) { }
   ngOnInit() {
-    this.personaService.logout();
+    this.generalService.logout();
   }
 
 // ==================================================
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.personaService.login(forma.value.usuario,forma.value.password)
+    this.generalService.login(forma.value.usuario,forma.value.password)
         .subscribe((resp: any) => {
 
           console.log("resp es : ",resp);

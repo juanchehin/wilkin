@@ -1,0 +1,98 @@
+<br>
+<div class="row animated fadeIn">
+
+    <div class="col-6">
+        <div class="card alert alert-success">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label>Filtro: </label><input #input type="text" class="form-control" placeholder="Nombre del filtro..." id="buscarPatente">
+                </div>
+            </div>
+            <button (click)="buscarFiltro( )" class="btn btn-primary">
+            Consulta
+            <i class="material-icons">
+                search
+                </i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+
+
+    <div class="col-12">
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <h3 class="card-title">Cantidad filtros ( <small> {{ totalFiltros }} </small> )</h3>
+                    </div>
+
+                    <div class="col-sm-6 form-group">
+                        <div class="btn-group float-right" role="group" style="margin-top: 30px;">
+                            <button [routerLink]="['/cliente']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                      <i class="fa fa-plus"></i>
+                      Nuevo Filtro
+                      </button>
+
+                            <button (click)="cargarFiltrosPaginado( )" class="btn btn-success">
+                          Actualizar lista
+                      <i class="material-icons ">
+                          wifi_protected_setup
+                          </i>
+                      </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Filtro</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let filtro of filtros">
+
+                            <td>{{ filtro.Filtro }}</td>
+
+                            <!-- ============================== Grupo de Botones =================================== -->
+                            <td>
+                                <div class=" btn-group " role="group " aria-label="Basic example ">
+                                    <button title="Editar" [routerLink]="[ '/cliente/editar', filtro.IdFiltro ] " class="btn btn-muted ">
+                                        <i class="material-icons ">
+                                            assignment_ind
+                                            </i>
+                                    </button>
+                                    <button title="Borrar cliente" (click)="eliminarFiltro( filtro ) " class="btn btn-danger ">
+                                        <i class="material-icons ">
+                                        delete
+                                        </i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-15) " class="btn btn-secondary ">
+                    Anteriores
+                  </button>
+
+                <button (click)="cambiarDesde(15) " class="btn btn-secondary " style="margin-left: 50px; ">
+                      Siguientes
+                  </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PersonaService } from '../../services/persona/persona.service';
+import { GeneralService } from '../../services/general/general.service';
 
 @Component({
   selector: 'app-detalle-historico',
@@ -37,7 +37,7 @@ export class DetalleHistoricoComponent implements OnInit {
   Kilometros: any;
 
   constructor(
-    public personaService: PersonaService,
+    public GeneralService: GeneralService,
     private activatedRoute: ActivatedRoute
   ) {
    }
@@ -55,7 +55,7 @@ cargarCliente() {
 
   this.date = this.activatedRoute.snapshot.paramMap.get('id');
 
-  this.personaService.dameCliente( this.date )
+  this.GeneralService.dameCliente( this.date )
              .subscribe( (resp: any) => {
 
               this.IdCliente = resp[0].IdCliente;
@@ -77,7 +77,7 @@ cargarCliente() {
 
 cargarHistorico() {
 
-    this.personaService.cargarHistorico( this.date, this.desde )
+    this.GeneralService.cargarHistorico( this.date, this.desde )
                .subscribe( (resp: any) => {
 
                 console.log("historico detalle cliente es : ",resp)

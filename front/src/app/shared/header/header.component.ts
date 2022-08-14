@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaService } from '../../services/persona/persona.service';
+import { GeneralService } from '../../services/general/general.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   id!: number;
 
   constructor(
-    public personaService: PersonaService,
+    public GeneralService: GeneralService,
     public router: Router ) {
 
 
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   comprobarLogueo() {
     this.correoActual = localStorage.getItem('usuario');
 
-    if (this.personaService.estaLogueado()) {
+    if (this.GeneralService.estaLogueado()) {
 
       return false;
     } else {
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
 // ==================================================
 logout() {
 
-  this.personaService.logout();
+  this.GeneralService.logout();
 }
 
 }

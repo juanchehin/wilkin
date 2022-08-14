@@ -11,6 +11,9 @@ import { LoginGuardGuard } from '../services/guards/login-guard.guard';
 import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 import { HistoricoComponent } from './historico/historico.component';
 import { DetalleHistoricoComponent } from './historico/detalle-historico.component';
+import { TrabajoComponent } from './trabajos/trabajo.component';
+// Filtros
+import { FiltrosComponent } from './filtros/filtros.component';
 
 const pagesRoutes: Routes = [
 
@@ -34,6 +37,11 @@ const pagesRoutes: Routes = [
             { path: 'cliente/editar/:id', component: EditarclienteComponent },
             { path: 'cliente/historico/:id', component: HistoricoComponent },
             { path: 'cliente/historico/detalle/:id', component: DetalleHistoricoComponent },
+            { path: 'cliente/trabajo/:id', component: TrabajoComponent },
+            // Filtros
+            { path: 'filtros', component: FiltrosComponent },
+            // { path: 'filtro', component: FiltroComponent },
+            // { path: 'filtro/editar/:id', component: EditarfiltroComponent }
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }

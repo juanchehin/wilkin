@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonaService } from 'src/app/services/service.index';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   IdPersona = '0';
 
   constructor(
-    public personaService: PersonaService
+    public generalService: GeneralService
     ) { }
   ngOnInit() {
 

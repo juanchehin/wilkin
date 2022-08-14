@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 declare var Swal: any;
-import { PersonaService } from '../../services/persona/persona.service';
+import { GeneralService } from '../../services/general/general.service';
 
 // const Swal = require('sweetalert2');
 
@@ -16,7 +16,7 @@ export class ClientesComponent implements OnInit {
   totalClientes = 0;
 
   constructor(
-    public personaService: PersonaService
+    public GeneralService: GeneralService
   ) {
    }
 
@@ -37,7 +37,7 @@ export class ClientesComponent implements OnInit {
     const buscarNombre: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
     buscarNombre.value = '';
 
-    this.personaService.cargarClientes( this.desde )
+    this.GeneralService.cargarClientes( this.desde )
                .subscribe( (resp: any) => {
 
                 this.totalClientes = resp[1][0].cantCli;
@@ -61,7 +61,7 @@ buscarPatente( ) {
   const Patente: any = inputElement.value || null;
 
 
-  this.personaService.buscarPatente( Patente  )
+  this.GeneralService.buscarPatente( Patente  )
           .subscribe( (resp: any) => {
 
             if( resp.length !== 0 ) {
@@ -88,7 +88,7 @@ buscarCliente( ) {
   const inputElement1: HTMLInputElement = document.getElementById('buscarNombres') as HTMLInputElement;
   const Nombres: any = inputElement1.value || null;
 
-  this.personaService.buscarCliente( Apellidos, Nombres  )
+  this.GeneralService.buscarCliente( Apellidos, Nombres  )
           .subscribe( (resp: any) => {
 
             if( resp.length !== 0 ) {
@@ -123,7 +123,7 @@ buscarCliente( ) {
 
         const parametro = cliente.IdPersona.toString();
 
-        this.personaService.eliminarCliente( parametro )
+        this.GeneralService.eliminarCliente( parametro )
                   .subscribe( (resp: any) => {
                       this.cargarClientes();
                       if ( resp.mensaje === 'Ok') {

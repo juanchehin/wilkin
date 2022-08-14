@@ -104,6 +104,11 @@
                                             grading
                                             </i>
                                     </button>
+                                    <button title="Agregar trabajo" [routerLink]="['/cliente/trabajo/', cliente.IdCliente ] " class="btn btn-success ">
+                                      <i class="material-icons ">
+                                        add_circle_outline
+                                          </i>
+                                  </button>
                                     <button title="Borrar cliente" (click)="eliminarCliente( cliente ) " class="btn btn-danger ">
                                         <i class="material-icons ">
                                         delete

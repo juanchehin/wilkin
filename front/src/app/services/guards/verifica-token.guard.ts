@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { PersonaService } from '../persona/persona.service';
+import { GeneralService } from '../general/general.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +8,21 @@ import { PersonaService } from '../persona/persona.service';
 export class VerificaTokenGuard implements CanActivate {
 
   constructor(
-    public personaService: PersonaService,
+    public GeneralService: GeneralService,
     public router: Router
   ) { }
 
   canActivate(): Promise<boolean> | boolean {
 
 
-    const token = this.personaService.token;  // TOKEN <-- String en base64
+    const token = this.GeneralService.token;  // TOKEN <-- String en base64
     const payload = JSON.parse( atob(token.split('.')[1]));  // <-- Obtengo la info del token, desde base64
 
     const expirado = this.expirado(payload.exp);
 
     if ( expirado ) {
 
-      this.personaService.logout();
+      this.GeneralService.logout();
       return false;
     } else {
 
@@ -46,7 +46,7 @@ export class VerificaTokenGuard implements CanActivate {
         resolve(true);
       } else{
 
-        // this.personaService.renuevaToken()
+        // this.GeneralService.renuevaToken()
         //   .subscribe( () => {
         //     resolve(true);
         //   }, () => {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonaService } from './service.index';
 
 import { HttpClientModule } from '@angular/common/http';
+import { GeneralService } from './general/general.service';
 
 
 @NgModule({
@@ -12,9 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    PersonaService,
-    // LoginGuardGuard,
-    // VerificaTokenGuard
+    GeneralService
   ]
 })
 export class ServiceModule { }
