@@ -62,6 +62,20 @@ public async altaFiltro(req: Request, res: Response) {
     })
 
 }
+// ==================================================
+//        Lista todos los Filtros
+// ==================================================
+
+public async listarFiltros(req: Request, res: Response): Promise<void> {
+    
+    pool.query(`call bsp_listar_filtros()`, function(err: any, result: any, fields: any){
+       if(err){
+           console.log("error", err);
+           return;
+       }
+       res.json(result);
+   })
+}
 
 // ==================================================
 //        Lista Filtros desde cierto valor

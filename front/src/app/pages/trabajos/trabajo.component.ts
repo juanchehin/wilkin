@@ -52,6 +52,7 @@ export class TrabajoComponent implements OnInit {
   ngOnInit() {
 
     this.forma = new FormGroup({
+      Kilometros: new FormControl(null ),
       Aceite: new FormControl(null, Validators.required ),
       Filtro: new FormControl(null, Validators.required ),
       CorreaDist: new FormControl(null ),

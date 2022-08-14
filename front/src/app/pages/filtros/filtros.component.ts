@@ -89,7 +89,7 @@ buscarFiltro( ) {
     })
     .then( (borrar: any) => {
 
-      if (borrar) {
+      if (borrar.isConfirmed) {
 
         const parametro = filtro.IdFiltro.toString();
 

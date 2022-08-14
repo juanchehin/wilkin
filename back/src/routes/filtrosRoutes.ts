@@ -14,6 +14,7 @@ class FiltrosRoutes {
 
     config(): void {
 
+        this.router.get('/listar',filtrosController.listarFiltros);
         this.router.get('/listar/:desde',filtrosController.listarFiltrosPaginado);
         this.router.get('/buscar/:pFiltro',filtrosController.buscarFiltro);
         this.router.post('/alta' , filtrosController.altaFiltro);
