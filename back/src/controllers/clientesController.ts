@@ -14,16 +14,26 @@ class PersonasController {
 // ==================================================
 public async dameCliente(req: Request, res: Response): Promise<any> {
 
+    if(req.params.pIdCliente == 'undefined' || req.params.pIdCliente == undefined)
+    { 
+        res.status(404).json({ text: "Ocurrio un problema" });
+        return;
+    }
+
     var IdCliente = req.params.pIdCliente;
 
-    pool.query(`call bsp_dame_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_dame_cliente('${IdCliente}')`, function(err: any, result: any){
         if(err){
-            
-            console.log("result : ",result);
             res.status(404).json({ text: "La personas no existe" });
         }
         
-        return res.json(result[0]);
+        try{ 
+            return res.json(result[0]);
+        }catch
+        { 
+            res.status(404).json({ text: "Ocurrio un problema" });
+        } 
+
     })
 
 }
@@ -304,6 +314,35 @@ public async altaTrabajo(req: Request, res: Response) {
         }
 
         return res.json({ Mensaje: 'Ok' });
+    })
+
+}
+
+// ==================================================
+//        Obtiene un trabajo de la BD
+// ==================================================
+public async dameTrabajo(req: Request, res: Response): Promise<any> {
+
+    if(req.params.pIdTrabajo == 'undefined' || req.params.pIdTrabajo == undefined)
+    { 
+        res.status(404).json({ text: "Ocurrio un problema" });
+        return;
+    }
+
+    var IdTrabajo = req.params.pIdTrabajo;
+
+    pool.query(`call bsp_dame_trabajo('${IdTrabajo}')`, function(err: any, result: any){
+        if(err){
+            res.status(404).json({ text: "El trabajo no existe" });
+        }
+        
+        try{ 
+            return res.json(result[0]);
+        }catch
+        { 
+            res.status(404).json({ text: "Ocurrio un problema" });
+        } 
+
     })
 
 }

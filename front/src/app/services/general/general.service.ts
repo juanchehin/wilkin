@@ -139,8 +139,25 @@ cargarHistorico( IdCliente: string ,desde: number = 0 ) {
     }
 );
 
+
 }
 
+
+// ==================================================
+//        Cargar
+// ==================================================
+dameTrabajo( IdTrabajo: string  ) {
+
+  let url = URL_SERVICIOS + '/personas/trabajo/' + IdTrabajo;  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+  );
+}
 // ====================================================================================================================
 // =========================================== CLIENTES ===================================================================
 // ====================================================================================================================
@@ -439,8 +456,6 @@ editarFiltro(
 buscarFiltro( termino: string ) {
 
   const url = URL_SERVICIOS + '/filtros/buscar/' + termino;
-
-  console.log("buscarFiltro : termino : ",termino)
 
   return this.http.get(
     url, {

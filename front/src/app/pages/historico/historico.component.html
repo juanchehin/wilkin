@@ -35,7 +35,7 @@
                 <td>{{ historico.Aceite }}</td>
                 <td>{{ historico.Filtro }}</td>
                 <td>
-                    <button title="Ver mas" [routerLink]="[ '/cliente/historico/detalle/', date ] " class="btn btn-success">
+                    <button title="Ver mas" [routerLink]="[ '/cliente/historico/detalle/', date ,historico.IdTrabajo ] " class="btn btn-success">
                     <i class="material-icons ">
                       chevron_right
                         </i>

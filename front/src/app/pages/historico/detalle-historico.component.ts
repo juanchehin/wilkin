@@ -12,12 +12,12 @@ export class DetalleHistoricoComponent implements OnInit {
   historicos: any[] = [];
   desde = 0;
   totalHistorico: any;
-  date: any;
+  IdCliente: any;
 
   Apellidos: any;
   Nombres: any;
   Patente: any;
-  IdCliente: any;
+  IdTrabajo: any;
 
   Aceite: any;
   Filtro: any;
@@ -35,9 +35,10 @@ export class DetalleHistoricoComponent implements OnInit {
   CambioAA: any;
   Fecha: any;
   Kilometros: any;
+  Observaciones: any;
 
   constructor(
-    public GeneralService: GeneralService,
+    private generalService: GeneralService,
     private activatedRoute: ActivatedRoute
   ) {
    }
@@ -53,9 +54,9 @@ export class DetalleHistoricoComponent implements OnInit {
 
 cargarCliente() {
 
-  this.date = this.activatedRoute.snapshot.paramMap.get('id');
+  this.IdCliente = this.activatedRoute.snapshot.paramMap.get('IdCliente');
 
-  this.GeneralService.dameCliente( this.date )
+  this.generalService.dameCliente( this.IdCliente )
              .subscribe( (resp: any) => {
 
               this.IdCliente = resp[0].IdCliente;
@@ -77,31 +78,33 @@ cargarCliente() {
 
 cargarHistorico() {
 
-    this.GeneralService.cargarHistorico( this.date, this.desde )
+    this.IdTrabajo = this.activatedRoute.snapshot.paramMap.get('IdTrabajo');
+
+    this.generalService.dameTrabajo( this.IdTrabajo )
                .subscribe( (resp: any) => {
 
-                console.log("historico detalle cliente es : ",resp)
 
                 this.historicos = resp[0];
 
-                this.Aceite = resp[0][0].Aceite;
-                this.Filtro = resp[0][0].Filtro;
-                this.CorreaDist = resp[0][0].CorreaDist;
-                this.Correa = resp[0][0].Correa;
-                this.TensorDist = resp[0][0].TensorDist;
-                this.BombaAgua = resp[0][0].BombaAgua;
-                this.PastillaFreno = resp[0][0].PastillaFreno;
-                this.CambioRef = resp[0][0].CambioRef;
-                this.CambioBujia = resp[0][0].CambioBujia;
-                this.CambioAceite = resp[0][0].CambioAceite;
-                this.CambioFiltroAceite = resp[0][0].CambioFiltroAceite;
-                this.CambioFiltroAgua = resp[0][0].CambioFiltroAgua;
-                this.CambioComb = resp[0][0].CambioComb;
-                this.CambioAA = resp[0][0].CambioAA;
-                this.Fecha = resp[0][0].Fecha;
-                this.Kilometros = resp[0][0].Kilometros;
+                this.Aceite = resp[0].Aceite;
+                this.Filtro = resp[0].Filtro;
+                this.CorreaDist = resp[0].CorreaDist;
+                this.Correa = resp[0].Correa;
+                this.TensorDist = resp[0].TensorDist;
+                this.BombaAgua = resp[0].BombaAgua;
+                this.PastillaFreno = resp[0].PastillaFreno;
+                this.CambioRef = resp[0].CambioRef;
+                this.CambioBujia = resp[0].CambioBujia;
+                this.CambioAceite = resp[0].CambioAceite;
+                this.CambioFiltroAceite = resp[0].CambioFiltroAceite;
+                this.CambioFiltroAgua = resp[0].CambioFiltroAgua;
+                this.CambioComb = resp[0].CambioComb;
+                this.CambioAA = resp[0].CambioAA;
+                this.Fecha = resp[0].Fecha;
+                this.Kilometros = resp[0].Kilometros;
+                this.Observaciones = resp[0].Observaciones
 
-                this.totalHistorico = resp[1][0].cantHistorico;
+                // this.totalHistorico = resp[1][0].cantHistorico;
 
               });
 

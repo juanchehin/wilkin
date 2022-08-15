@@ -23,6 +23,7 @@ class PersonasRoutes {
         this.router.post('/clientes/alta' , personasController.altaCliente);
         this.router.put('/clientes/baja/:pIdCliente' , personasController.bajaCliente);
         this.router.post('/trabajos/alta/:pIdCliente' , personasController.altaTrabajo);
+        this.router.get('/trabajo/:pIdTrabajo' , personasController.dameTrabajo);
     }
 
 }

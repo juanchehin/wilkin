@@ -1,13 +1,10 @@
 <div class="container">
-    <h1 class="well">Detalle de {{ Nombres }} {{ Apellidos }}</h1>
+    <h1 class="well">Detalle de {{ Nombres }} {{ Apellidos }} - {{ Fecha | date: 'dd/MM/yyyy'}}</h1>
     <div class="row">
         <div class="col-sm-12">
 
             <div class="alert alert-primary" role="alert">
                 <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <label>Fecha : <strong>{{ Fecha | date:"dd/MM/yyyy"}}</strong></label>
-                    </div>
                     <div class="col-sm-6 form-group">
                         <label>Kilometros : <strong>{{ Kilometros }}</strong></label>
                     </div>
@@ -66,6 +63,10 @@
                     <div class="col-sm-6 form-group">
                         <label>CambioComb : <strong>{{ CambioComb}}</strong></label>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones : <strong>{{ Observaciones}}</strong></label>
                 </div>
             </div>
 

@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
     this.generalService.login(forma.value.usuario,forma.value.password)
         .subscribe((resp: any) => {
 
-          console.log("resp es : ",resp);
 
           if ( resp === true) {
             this.router.navigate(['/principal']);

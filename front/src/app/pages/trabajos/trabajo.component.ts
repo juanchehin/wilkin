@@ -139,7 +139,6 @@ cargarAceites() {
 
 altaTrabajo() {
 
-  console.log("altaTrabajo : ",this.forma)
 
   if ( this.forma.invalid ) {
     return;
@@ -166,7 +165,6 @@ altaTrabajo() {
    )
             .subscribe( (resp: any) => {
 
-              console.log("resp en trabajo es : ",resp)
 
                 /*  Transformar resp.mensaje a JSON para que se pueda acceder*/
                 // tslint:disable-next-line: align

@@ -13,6 +13,7 @@ export class HistoricoComponent implements OnInit {
   desde = 0;
   totalHistorico: any;
   date: any;
+  IdTrabajo: any;
 
   Apellidos: any;
   Nombres: any;
@@ -80,7 +81,6 @@ cargarHistorico() {
     this.GeneralService.cargarHistorico( this.date, this.desde )
                .subscribe( (resp: any) => {
 
-                console.log("historico cliente es : ",resp)
 
                 this.historicos = resp[0];
 

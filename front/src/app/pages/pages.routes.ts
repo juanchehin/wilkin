@@ -38,7 +38,7 @@ const pagesRoutes: Routes = [
             { path: 'cliente', component: ClienteComponent },
             { path: 'cliente/editar/:id', component: EditarclienteComponent },
             { path: 'cliente/historico/:id', component: HistoricoComponent },
-            { path: 'cliente/historico/detalle/:id', component: DetalleHistoricoComponent },
+            { path: 'cliente/historico/detalle/:IdCliente/:IdTrabajo', component: DetalleHistoricoComponent },
             { path: 'cliente/trabajo/:id', component: TrabajoComponent },
             // Filtros
             { path: 'filtros', component: FiltrosComponent },
