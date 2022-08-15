@@ -17,6 +17,9 @@ import { TrabajoComponent } from './trabajos/trabajo.component';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { FiltroComponent } from './filtros/filtro.component';
 import { EditarfiltroComponent } from './filtros/editarfiltro.component';
+import { AceiteComponent } from './aceites/aceite.component';
+import { AceitesComponent } from './aceites/aceites.component';
+import { EditaraceiteComponent } from './aceites/editaraceite.component';
 
 
 
@@ -32,7 +35,10 @@ import { EditarfiltroComponent } from './filtros/editarfiltro.component';
         TrabajoComponent,
         FiltrosComponent,
         FiltroComponent,
-        EditarfiltroComponent
+        EditarfiltroComponent,
+        AceiteComponent,
+        AceitesComponent,
+        EditaraceiteComponent
       ],
     exports: [
         PagesComponent

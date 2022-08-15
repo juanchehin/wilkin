@@ -23,7 +23,7 @@
         <div class="card alert alert-success">
             <div class="row">
                 <div class="col-sm-6 form-group">
-                    <label>Patente: </label><input #input type="text" class="form-control" placeholder="Patente del automovil..." id="buscarPatente">
+                    <label>Patente: </label><input #input (keyup.enter)="buscarPatente( )" type="text" class="form-control" placeholder="Patente del automovil..." id="buscarPatente">
                 </div>
             </div>
             <button (click)="buscarPatente( )" class="btn btn-primary">

@@ -6,22 +6,22 @@ class AceitesController {
 // ==================================================
 //        Obtiene una personas de la BD
 // ==================================================
-public async dameFiltro(req: Request, res: Response): Promise<any> {
+public async dameAceite(req: Request, res: Response): Promise<any> {
 
-    var IdFiltro = req.params.pIdFiltro;
+    var IdAceite = req.params.pIdAceite;
 
     
-    console.log("IdFiltro : ",IdFiltro);
+    console.log("IdAceite : ",IdAceite);
     
     console.log("req.params : ",req.params);
 
-    pool.query(`call bsp_dame_filtro('${IdFiltro}')`, function(err: any, result: any){
+    pool.query(`call bsp_dame_aceite('${IdAceite}')`, function(err: any, result: any){
 
         console.log("result : ",result);
 
         if(err){
             
-            res.status(404).json({ text: "El filtro no existe" });
+            res.status(404).json({ text: "El aceite no existe" });
         }
         
         return res.json(result[0]);
@@ -32,12 +32,12 @@ public async dameFiltro(req: Request, res: Response): Promise<any> {
 // ==================================================
 //        Inserta un cliente
 // ==================================================
-public async altaFiltro(req: Request, res: Response) {
+public async altaAceite(req: Request, res: Response) {
 
-    var Filtro = req.body.pFiltro;
-    var Descripcion = req.body.pDescripcion;
+    var Aceite = req.body.pAceite;
+    var Descripcion = req.body.Descripcion;
 
-    pool.query(`call bsp_alta_filtro('${Filtro}','${Descripcion}')`, function(err: any, result: any){
+    pool.query(`call bsp_alta_aceite('${Aceite}','${Descripcion}')`, function(err: any, result: any){
 
         if(err){
             res.status(404).json({ text: "Ocurrio un problema" });
@@ -77,14 +77,14 @@ public async listarAceites(req: Request, res: Response): Promise<void> {
 }
 
 // ==================================================
-//        Lista Filtros desde cierto valor
+//        Lista Aceites desde cierto valor
 // ==================================================
 
-public async listarFiltrosPaginado(req: Request, res: Response): Promise<void> {
+public async listarAceitesPaginado(req: Request, res: Response): Promise<void> {
      var desde = req.params.desde || 0;
      desde  = Number(desde);
 
-     pool.query(`call bsp_listar_filtros_paginado('${desde}')`, function(err: any, result: any, fields: any){
+     pool.query(`call bsp_listar_aceites_paginado('${desde}')`, function(err: any, result: any){
         if(err){
             console.log("error", err);
             return;
@@ -94,13 +94,13 @@ public async listarFiltrosPaginado(req: Request, res: Response): Promise<void> {
  }
  
 // ==================================================
-//   Elimina un cliente de la BD
+//   Elimina un aceite de la BD
 // ==================================================
 
-public async eliminarFiltro(req: Request, res: Response) {
-    var IdFiltro = req.params.pIdFiltro;
+public async eliminarAceite(req: Request, res: Response) {
+    var IdAceite = req.params.pIdAceite;
 
-    pool.query(`call bsp_baja_filtro('${IdFiltro}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_baja_aceite('${IdAceite}')`, function(err: any, result: any, fields: any){
 
         if(err){
             console.log("error", err);
@@ -124,13 +124,13 @@ public async eliminarFiltro(req: Request, res: Response) {
 // ==================================================
 
 
-public async actualizaFiltro(req: Request, res: Response) {
+public async actualizaAceite(req: Request, res: Response) {
 
-    var IdFiltro = req.params.pIdFiltro;
-    var Filtro = req.body.Filtro;
+    var IdAceite = req.params.pIdAceite;
+    var Aceite = req.body.Aceite;
     var Descripcion = req.body.Descripcion;
 
-    pool.query(`call bsp_editar_filtro('${IdFiltro}','${Filtro}','${Descripcion}')`, function(err: any, result: any){
+    pool.query(`call bsp_editar_aceite('${IdAceite}','${Aceite}','${Descripcion}')`, function(err: any, result: any){
 
         if(err){
             
@@ -153,14 +153,14 @@ public async actualizaFiltro(req: Request, res: Response) {
  // ==================================================
 //        Busqueda 
 // ==================================================
-public async buscarFiltro(req: Request, res: Response): Promise<any> {
+public async buscarAceite(req: Request, res: Response): Promise<any> {
 
-    const pFiltro = req.params.pFiltro;
+    const pAceite = req.params.pAceite;
     
-    pool.query(`call bsp_buscar_filtro('${pFiltro}')`, function(err: any, result: any, fields: any){
+    pool.query(`call bsp_buscar_aceite('${pAceite}')`, function(err: any, result: any){
         if(err){
             
-            res.status(404).json({ text: "Filtro inexiste" });
+            res.status(404).json({ text: "Aceite inexiste" });
         }
         
         return res.json(result);

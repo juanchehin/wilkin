@@ -16,6 +16,10 @@ import { TrabajoComponent } from './trabajos/trabajo.component';
 import { FiltrosComponent } from './filtros/filtros.component';
 import { FiltroComponent } from './filtros/filtro.component';
 import { EditarfiltroComponent } from './filtros/editarfiltro.component';
+// Aceites
+import { AceitesComponent } from './aceites/aceites.component';
+import { AceiteComponent } from './aceites/aceite.component';
+import { EditaraceiteComponent } from './aceites/editaraceite.component';
 
 const pagesRoutes: Routes = [
 
@@ -44,6 +48,10 @@ const pagesRoutes: Routes = [
             { path: 'filtros', component: FiltrosComponent },
             { path: 'filtro', component: FiltroComponent },
             { path: 'filtro/editar/:id', component: EditarfiltroComponent },
+            // Aceites
+            { path: 'aceites', component: AceitesComponent },
+            { path: 'aceite', component: AceiteComponent },
+            { path: 'aceite/editar/:id', component: EditaraceiteComponent },
             { path: '', redirectTo: 'login', pathMatch: 'full' }
         ]
     }

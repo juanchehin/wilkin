@@ -329,7 +329,148 @@ buscarCliente( Apellidos: string , Nombres: string  ): any {
 }
 
 // ====================================================================================================================
-// =========================================== Filtros/Aceites ===================================================================
+// =========================================== Aceites ===================================================================
+// ====================================================================================================================
+
+// ==================================================
+//        Cargar Aceites - Peticion GET al server
+// ==================================================
+cargarAceitesPaginado( desde: number = 0 ) {
+
+  let url = URL_SERVICIOS + '/aceites/listar/' + desde;  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//
+// ==================================================
+
+dameAceite( IdAceite: string  ): any {
+
+  const url = URL_SERVICIOS + '/aceites/dame/' + IdAceite;
+
+  return this.http.get(url);
+
+}
+
+// ==================================================
+//        Crear
+// ==================================================
+crearAceite( pAceite : string, Descripcion: string) {
+
+  let url = URL_SERVICIOS + '/aceites/alta';
+
+  var Aceite = {
+    pAceite,
+    Descripcion
+  }
+
+  return this.http.post(
+    url,
+    Aceite,
+    {
+      headers: {
+        token: this.token
+      }
+    }
+);
+}
+
+// ==================================================
+//        Elimina un Aceite
+// ==================================================
+
+eliminarAceite( IdAceite: any ) {
+
+  let url = URL_SERVICIOS + '/aceites/eliminar/' + IdAceite;
+
+  return this.http.put(
+    url,
+    IdAceite,
+    {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+// ==================================================
+//        Editar Aceite
+// ==================================================
+
+editarAceite(
+    IdAceite : string,
+    Aceite : string,
+    Descripcion : string
+ ) {
+
+  let url = URL_SERVICIOS + '/filtros/actualizar/' + IdAceite;
+
+  var aceite = {
+    Aceite,
+    Descripcion
+  }
+
+
+  return this.http.put(url ,
+    aceite,
+     {
+      headers: {
+        token: this.token
+      }
+    }
+  );
+
+}
+
+// ==================================================
+//        Busca una Aceite por termino
+// ==================================================
+
+buscarAceite( termino: string ) {
+
+  const url = URL_SERVICIOS + '/aceites/buscar/' + termino;
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+  )
+}
+
+
+// ==================================================
+//        Cargar Filtros - Peticion GET al server
+// ==================================================
+dameTodosAceites( ) {
+
+  let url = URL_SERVICIOS + '/aceites/listar/';  // query
+
+  return this.http.get(
+    url, {
+      headers: {
+        token: this.token
+      }
+    }
+);
+
+}
+
+
+// ====================================================================================================================
+// =========================================== Filtros ===================================================================
 // ====================================================================================================================
 // ==================================================
 //        Cargar Filtros - Peticion GET al server
@@ -466,23 +607,6 @@ buscarFiltro( termino: string ) {
   )
 }
 
-
-// ==================================================
-//        Cargar Filtros - Peticion GET al server
-// ==================================================
-dameTodosAceites( ) {
-
-  let url = URL_SERVICIOS + '/aceites/listar/';  // query
-
-  return this.http.get(
-    url, {
-      headers: {
-        token: this.token
-      }
-    }
-);
-
-}
 
 // ==================================================
 //  /********      Trabajos  *******************

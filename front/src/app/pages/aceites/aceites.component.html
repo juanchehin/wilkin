@@ -1,0 +1,98 @@
+<br>
+<div class="row animated fadeIn">
+
+    <div class="col-6">
+        <div class="card alert alert-success">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label>Aceite: </label><input #input (keyup.enter)="buscarAceite( )" type="text" class="form-control" placeholder="Nombre del aceite..." id="buscarAceites">
+                </div>
+            </div>
+            <button (click)="buscarAceite( )" class="btn btn-primary">
+            Consulta
+            <i class="material-icons">
+                search
+                </i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+
+
+    <div class="col-12">
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <h3 class="card-title">Cantidad aceites ( <small> {{ totalAceites }} </small> )</h3>
+                    </div>
+
+                    <div class="col-sm-6 form-group">
+                        <div class="btn-group float-right" role="group" style="margin-top: 30px;">
+                            <button [routerLink]="['/aceite']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                      <i class="fa fa-plus"></i>
+                      Nuevo Aceite
+                      </button>
+
+                            <button (click)="cargarAceitesPaginado( )" class="btn btn-success">
+                          Actualizar lista
+                      <i class="material-icons ">
+                          wifi_protected_setup
+                          </i>
+                      </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Aceite</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let aceite of aceites">
+
+                            <td>{{ aceite.Aceite }}</td>
+
+                            <!-- ============================== Grupo de Botones =================================== -->
+                            <td>
+                                <div class=" btn-group " role="group " aria-label="Basic example ">
+                                    <button title="Editar" [routerLink]="[ '/aceite/editar', aceite.IdAceite ] " class="btn btn-muted ">
+                                        <i class="material-icons ">
+                                            assignment_ind
+                                            </i>
+                                    </button>
+                                    <button title="Borrar aceite" (click)="eliminarAceite( aceite ) " class="btn btn-danger ">
+                                        <i class="material-icons ">
+                                        delete
+                                        </i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-15) " class="btn btn-secondary ">
+                    Anteriores
+                  </button>
+
+                <button (click)="cambiarDesde(15) " class="btn btn-secondary " style="margin-left: 50px; ">
+                      Siguientes
+                  </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
