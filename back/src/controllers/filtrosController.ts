@@ -10,14 +10,8 @@ public async dameFiltro(req: Request, res: Response): Promise<any> {
 
     var IdFiltro = req.params.pIdFiltro;
 
-    
-    console.log("IdFiltro : ",IdFiltro);
-    
-    console.log("req.params : ",req.params);
 
     pool.query(`call bsp_dame_filtro('${IdFiltro}')`, function(err: any, result: any){
-
-        console.log("result : ",result);
 
         if(err){
             
@@ -70,7 +64,7 @@ public async listarFiltros(req: Request, res: Response): Promise<void> {
     
     pool.query(`call bsp_listar_filtros()`, function(err: any, result: any, fields: any){
        if(err){
-           console.log("error", err);
+        
            return;
        }
        res.json(result);
@@ -87,7 +81,7 @@ public async listarFiltrosPaginado(req: Request, res: Response): Promise<void> {
 
      pool.query(`call bsp_listar_filtros_paginado('${desde}')`, function(err: any, result: any, fields: any){
         if(err){
-            console.log("error", err);
+            res.status(404).json({ text: "Ocurrio un problema" });
             return;
         }
         res.json(result);
@@ -104,7 +98,7 @@ public async eliminarFiltro(req: Request, res: Response) {
     pool.query(`call bsp_baja_filtro('${IdFiltro}')`, function(err: any, result: any, fields: any){
 
         if(err){
-            console.log("error", err);
+            res.status(404).json({ text: "Ocurrio un problema" });
             return;
         }
 

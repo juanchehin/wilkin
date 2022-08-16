@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-declare var Swal: any;
+
+import Swal from 'sweetalert2';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { GeneralService } from 'src/app/services/general/general.service';

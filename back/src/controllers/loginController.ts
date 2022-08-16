@@ -20,14 +20,13 @@ public async login(req: Request, res: Response){
 pool.query(`call bsp_dame_persona_usuario_pass('${usuario}','${pass}')`, function(err: any, result: string | any[]){
 
     if(err){
-        
-        console.log("err es : ",err);
+        res.status(404).json({ text: "Ocurrio un problema" });
+        return;        
     }
 
     //
     if(result[0][0].Mensaje !== 'Ok' || null){
-        console.log('Error de credenciales');
-        
+                
         // Quitar esto para produccion
         res.json({
             ok: true,

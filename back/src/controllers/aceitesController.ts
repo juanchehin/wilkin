@@ -12,7 +12,6 @@ public async dameAceite(req: Request, res: Response): Promise<any> {
 
     pool.query(`call bsp_dame_aceite('${IdAceite}')`, function(err: any, result: any){
 
-        console.log("result : ",result);
 
         if(err){
             
@@ -81,7 +80,7 @@ public async listarAceitesPaginado(req: Request, res: Response): Promise<void> {
 
      pool.query(`call bsp_listar_aceites_paginado('${desde}')`, function(err: any, result: any){
         if(err){
-            console.log("error", err);
+            
             return;
         }
         res.json(result);
@@ -98,7 +97,7 @@ public async eliminarAceite(req: Request, res: Response) {
     pool.query(`call bsp_baja_aceite('${IdAceite}')`, function(err: any, result: any, fields: any){
 
         if(err){
-            console.log("error", err);
+            
             return;
         }
 
@@ -125,12 +124,8 @@ public async actualizaAceite(req: Request, res: Response) {
     var Aceite = req.body.Aceite;
     var Descripcion = req.body.Descripcion;
 
-    console.log("req.body : ",req.body)
-
     pool.query(`call bsp_editar_aceite('${IdAceite}','${Aceite}','${Descripcion}')`, function(err: any, result: any){
 
-        console.log("result : ",result)
-        console.log("err : ",err)
         if(err){
             
             res.status(404).json({ text: "Ocurrio un problema" });

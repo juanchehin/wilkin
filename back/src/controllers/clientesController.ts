@@ -113,7 +113,7 @@ public async listarClientes(req: Request, res: Response): Promise<void> {
 
      pool.query(`call bsp_listar_clientes('${desde}')`, function(err: any, result: any, fields: any){
         if(err){
-            console.log("error", err);
+            
             return;
         }
         res.json(result);
@@ -149,7 +149,6 @@ public async bajaCliente(req: Request, res: Response) {
 
     pool.query(`call bsp_baja_cliente('${IdCliente}')`, function(err: any, result: any, fields: any){
         if(err){
-            console.log("error", err);
             return;
         }
 
@@ -172,10 +171,8 @@ public async bajaCliente(req: Request, res: Response) {
 
 public async actualizaCliente(req: Request, res: Response) {
 
-    console.log("pasa actualizaCliente  req.body : ", req.body);
-    console.log("pasa actualizaCliente : req.params ", req.params);
-
     var IdCliente = req.params.IdCliente;
+    
     var Apellidos = req.body.Apellidos;
     var Nombres = req.body.Nombres;
     var Telefono = req.body.Telefono;
@@ -185,7 +182,6 @@ public async actualizaCliente(req: Request, res: Response) {
     var Modelo = req.body.Modelo;
     var Observaciones = req.body.Observaciones;
 
-    console.log("pasa actualizaCliente : req.params ", IdCliente);
 
     pool.query(`call bsp_editar_cliente('${IdCliente}','${Apellidos}','${Nombres}','${Telefono}','${Patente}','${Correo}',
     '${Direccion}','${Modelo}','${Observaciones}')`, function(err: any, result: any){
@@ -222,7 +218,7 @@ public async listarClientesPlan(req: Request, res: Response): Promise<void> {
 
      pool.query(`call bsp_listar_clientes_plan('${desde}','${IdPlan}')`, function(err: any, result: any, fields: any){
         if(err){
-            console.log("error", err);
+            
             return;
         }
         res.json(result);
