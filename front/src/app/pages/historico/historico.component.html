@@ -5,6 +5,13 @@
         <h4 class="card-title">Cantidad ( <small> {{ totalHistorico }} </small> )</h4>
     </div>
 
+    <div class="float-right">
+        <button title="Agregar trabajo" [routerLink]="['/cliente/trabajo/', IdCliente ] " class="btn btn-success ">
+          <i class="fa fa-plus"></i>
+                      Nuevo Trabajo
+      </button>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
