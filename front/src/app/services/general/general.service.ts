@@ -414,7 +414,7 @@ editarAceite(
     Descripcion : string
  ) {
 
-  let url = URL_SERVICIOS + '/filtros/actualizar/' + IdAceite;
+  let url = URL_SERVICIOS + '/aceites/actualizar/' + IdAceite;
 
   var aceite = {
     Aceite,

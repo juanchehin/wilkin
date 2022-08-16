@@ -10,11 +10,6 @@ public async dameAceite(req: Request, res: Response): Promise<any> {
 
     var IdAceite = req.params.pIdAceite;
 
-    
-    console.log("IdAceite : ",IdAceite);
-    
-    console.log("req.params : ",req.params);
-
     pool.query(`call bsp_dame_aceite('${IdAceite}')`, function(err: any, result: any){
 
         console.log("result : ",result);
@@ -123,15 +118,19 @@ public async eliminarAceite(req: Request, res: Response) {
 //        Edita un cliente
 // ==================================================
 
-
 public async actualizaAceite(req: Request, res: Response) {
 
     var IdAceite = req.params.pIdAceite;
+
     var Aceite = req.body.Aceite;
     var Descripcion = req.body.Descripcion;
 
+    console.log("req.body : ",req.body)
+
     pool.query(`call bsp_editar_aceite('${IdAceite}','${Aceite}','${Descripcion}')`, function(err: any, result: any){
 
+        console.log("result : ",result)
+        console.log("err : ",err)
         if(err){
             
             res.status(404).json({ text: "Ocurrio un problema" });
