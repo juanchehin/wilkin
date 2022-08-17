@@ -618,7 +618,7 @@ buscarFiltro( termino: string ) {
 //        Crear trabajo
 // ==================================================
 altaTrabajo( IdCliente: string,Kilometros : string, Aceite: string, Filtro: string  ,Correa : string,TensorDist: string , PastillaFreno : string, CambioRef: string,CambioBujia: string
-  ,CambioComb : string, CambioFiltroAceite: string,CambioFiltroAgua: string,CorreaDist: string,BombaAgua : string,CambioAA : string,CambioAceite : string,Observaciones: string ) {
+  ,CambioComb : string, CambioFiltroAceite: string,CorreaDist: string,BombaAgua : string,CambioAA : string,CambioAceite : string,Observaciones: string ) {
 
   var trabajo = [
   Kilometros,
@@ -631,7 +631,6 @@ altaTrabajo( IdCliente: string,Kilometros : string, Aceite: string, Filtro: stri
   CambioBujia,
   CambioComb,
   CambioFiltroAceite,
-  CambioFiltroAgua,
   CorreaDist,
   BombaAgua,
   CambioAA,

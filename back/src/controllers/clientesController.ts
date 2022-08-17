@@ -284,16 +284,16 @@ public async altaTrabajo(req: Request, res: Response) {
     var CambioBujia = req.body[7] === "Si" ? "S" : "N";;
     var CambioComb = req.body[8] === "Si" ? "S" : "N";;
     var CambioFiltroAceite = req.body[9] === "Si" ? "S" : "N";;
-    var CambioFiltroAgua = req.body[10] === "Si" ? "S" : "N";
-    var CorreaDist = req.body[11] === "Si" ? "S" : "N";
-    var BombaAgua = req.body[12] === "Si" ? "S" : "N";
-    var CambioAA = req.body[13] === "Si" ? "S" : "N";
-    var CambioAceite = req.body[14] === "Si" ? "S" : "N";
-    var Observaciones = req.body[15];
+    
+    var CorreaDist = req.body[10] === "Si" ? "S" : "N";
+    var BombaAgua = req.body[11] === "Si" ? "S" : "N";
+    var CambioAA = req.body[12] === "Si" ? "S" : "N";
+    var CambioAceite = req.body[13] === "Si" ? "S" : "N";
+    var Observaciones = req.body[14];
 
     pool.query(`call bsp_alta_trabajo('${IdCliente}','${Kilometros}','${Aceite}','${Filtro}','${Correa}',
     '${TensorDist}','${PastillaFreno}','${CambioRef}','${CambioBujia}','${CambioComb}','${CambioFiltroAceite}',
-    '${CambioFiltroAgua}','${CorreaDist}'
+    ,'${CorreaDist}'
     ,'${BombaAgua}','${CambioAA}','${CambioAceite}','${Observaciones}')`, function(err: any, result: any){
 
 
